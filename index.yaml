@@ -1,0 +1,233 @@
+- chapter_title: Introduction and exploring raw data
+  chapter_description: Just some description
+  exercises:
+  -   type    : VideoExercise
+      title   : Welcome to the course!
+      content : Introduction and summary of data cleaning process
+      
+  -   type    : MultipleChoiceExercise
+      title   : The data cleaning process
+      content : Which is not part of the data cleaning process as outlined in video? Removing or replacing missing data
+  
+  -   type    : NormalExercise
+      title   : Here's what messy data looks like
+      content : Use pre-code to display data from final challenge using head(..., n = 20)
+      
+  -   type    : NormalExercise
+      title   : Here's what clean data looks like
+      content : Use pre-code to clean the data in full and display the result with head(..., n = 20)
+  
+  -   type    : VideoExercise
+      title   : Exploring raw data
+      content : Introduce basic functions - class(), dim(), str()/glimpse(), summary(), names(), head(), tail(), tbl_df(), print(), hist(), plot()
+  
+  -   type    : NormalExercise
+      title   : Getting the class and dimensions of your data
+      content : class(), dim()
+  
+  -   type    : NormalExercise
+      title   : Viewing the structure of your data
+      content : str(), glimpse(), summary(), names()
+  
+  -   type    : NormalExercise
+      title   : Looking at your data
+      content : head(), tail(), tbl_df(), print()
+  
+  -   type    : NormalExercise
+      title   : Visualizing your data
+      content : hist(), plot()
+
+- chapter_title : Tidying data
+  exercises:
+  -   type    : VideoExercise
+      title   : Introduction to tidy data
+      content : Principles of tidy data and common symptoms of messy data
+  
+  -   type    : MultipleChoiceExercise
+      title   : Principles of tidy data
+      content : Which is NOT a principle of tidy data? A variable contains all values measured on the same unit across attributes
+  
+  -   type    : MultipleChoiceExercise
+      title   : Common symptoms of messy data
+      content : Which is NOT a common symptom of messy data? A table contains only one type of observational unit
+  
+  -   type    : VideoExercise
+      title   : Introduction to tidyr
+      content : Core functions and use cases of tidyr
+  
+  -   type    : MultipleChoiceExercise
+      title   : Functions in tidyr
+      content : Which is not a function in tidyr? filter()
+  
+  -   type    : MultipleChoiceExercise
+      title   : What kind of messy are the BMI data?
+      content : Which symptom of messy data seen in BMI data? Column headers are values, not variable names
+  
+  -   type    : NormalExercise
+      title   : Gathering columns into key-value pairs
+      content : gather()
+  
+  -   type    : NormalExercise
+      title   : Spreading key-value pairs into columns
+      content : spread()
+  
+  -   type    : NormalExercise
+      title   : Separating columns
+      content : separate()
+  
+  -   type    : NormalExercise
+      title   : Uniting columns
+      content : unite()
+  
+  -   type    : VideoExercise
+      title   : Addressing common symptoms of messy data
+      content : Review of common symptoms
+  
+  -   type    : NormalExercise
+      title   : Column headers are values, not variable names
+      content : gather()
+  
+  -   type    : NormalExercise
+      title   : Multiple values are stored in one column
+      content : separate()
+  
+  -   type    : NormalExercise
+      title   : Variables are stored in both rows and columns
+      content : gather(), spread()
+  
+  -   type    : VideoExercise
+      title   : A very brief introduction to manipulating data with dplyr
+      content : The next two exercises could be done using base R, but we will teach you the dplyr way since it's easier to learn and integrates seamlessly with tidyr
+      
+  -   type    : NormalExercise
+      title   : Multiple types of observational units are stored in the same table
+      content : Use select() and distinct() to break one table into two
+  
+  -   type    : NormalExercise
+      title   : A single observational unit is stored in multiple tables
+      content : Use inner_join() to join two tables into one
+
+- chapter_title : Preparing data for analysis
+  chapter_description: Just a description.
+  exercises :
+  -   type    : VideoExercise
+      title   : Issues when preparing data for analysis
+      content : type conversion, string manipulation, missing and special values, outliers and obvious errors
+  
+  -   type    : NormalExercise
+      title   : types of variables in R
+      content : Numeric (also int, dbl in dplyr), character (aka strings), dates, factor, logical
+  
+  -   type    : NormalExercise
+      title   : Common type conversions
+      content : Characters to numerics, characters to factors, factors to characters
+      
+  -   type    : NormalExercise
+      title   : Working with dates
+      content : Small taste of lubridate - ymd(), ymd_hms(), floor_date()
+  
+  -   type    : VideoExercise
+      title   : String manipulation in R
+      content : stringr - str_trim(), str_pad(), str_replace(), str_locate(); base R - toupper(), tolower()
+  
+  -   type    : NormalExercise
+      title   : Trimming and padding strings
+      content : str_trim(), str_pad()
+      
+  -   type    : NormalExercise
+      title   : Upper and lower case
+      content : toupper(), tolower()
+  
+  -   type    : NormalExercise
+      title   : Finding and replacing strings
+      content : str_locate(), str_replace()
+  
+  -   type    : VideoExercise
+      title   : Missing and special values
+      content : Missing values - NA and common variations ("", "#N/A", etc.); special values - NaN, Inf, etc.
+  
+  -   type    : MultipleChoiceExercise
+      title   : types of missing and special values in R
+      content : Which is NOT a missing or special value in R? "#N/A"
+      
+  -   type    : NormalExercise
+      title   : Finding missing values
+      content : is.na(), complete.cases()
+  
+  -   type    : NormalExercise
+      title   : Dealing with missing and special values
+      content : is.na(), str_replace()
+  
+  -   type    : VideoExercise
+      title   : Outliers and obvious errors
+      content : What are outliers and how to handle them? What are some examples of obvious errors and how should you deal with them?
+      
+  -   type    : MultipleChoice
+      title   : Identifying outliers and obvious errors
+      content : Which of the following are most useful for identifying outliers? summary() and hist()
+  
+  -   type    : NormalExercise
+      title   : Dealing with outliers and obvious errors
+      content : str_replace()
+
+- chapter_title: Putting it all together
+  exercises :
+  -   type    : VideoExercise
+      title   : Time to put it all together!
+      content : Review exploring data, tidying data, and preparing data for analysis
+  
+  -   type    : NormalExercise
+      title   : Exploring your data
+      content : str()/glimpse(), head(), tail()
+      
+  -   type    : MultipleChoiceExercise
+      title   : Violating a principle of tidy data
+      content : Which principle of tidy data is violated? Column headers are variables
+      
+  -   type    : NormalExercise
+      title   : Gathering your data
+      content : gather()
+      
+  -   type    : VideoExercise
+      title   : Preparing your data for analysis
+      content : Data are tidy, now what? Explore some more.
+  
+  -   type    : MultipleChoiceExercise
+      title   : What else do you see?
+      content : Missing values coded as "#N/A", numerics and dates are stored as characters
+      
+  -   type    : NormalExercise
+      title   : Dealing with missing values
+      content : Recode "#N/A" as NA
+      
+  -   type    : NormalExercise
+      title   : Adjusting variable types
+      content : Use as.numeric() and ymd()
+  
+  -   type    : NormalExercise
+      title   : Understanding the distribution of your data
+      content : summary(), hist()
+      
+  -   type    : MultipleChoiceExercise
+      title   : What else did you find?
+      content : Extreme values, negative ages, multiple values of 9999, categorical variable coded multiple ways (i.e. "Male", "MALE", "M")
+  
+  -   type    : VideoExercise
+      title   : Handling the outliers and strange values
+      content : Spoke to researchers and data input people. Researchers say the extreme values are still plausible and important to capture. Some data input people coded missing values as negative and others as 9999.
+  
+  -   type    : NormalExercise
+      title   : Replacing strange values
+      content : Replace negative values and 9999s with NA
+      
+  -   type    : NormalExercise
+      title   : Making categorical variables uniform
+      content : Correct alternative codings of categorical variable
+  
+  -   type    : NormalExercise
+      title   : Confirming things look better
+      content : str()/glimpse(), summary(), head(), tail(), plot()
+  
+  -   type    : VideoExercise
+      title   : Congratulations, your data are clean!
+      content : Data are clean and ready for analysis
