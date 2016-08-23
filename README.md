@@ -14,4 +14,6 @@ This is a paragraph describing the course. Consider it a "sales pitch" to studen
 ## Prerequisites
 
 * Introduction to R
-* ...
+* First course
+* Second course
+* Third course
