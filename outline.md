@@ -11,7 +11,7 @@ Using case studies:
 * Conclusions based on randomization distributions
   * Sometimes we can conclude the data are different from the population, sometimes we can't.
   * Different types of errors have different consequences.
-* R: ggplot2 - histograms and dotplots
+* R: ggplot2 - histograms and dotplots 
 
 ## Running Randomization Test: gender discrimination
 
