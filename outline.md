@@ -1,33 +1,44 @@
-## Introduction and exploring raw data
 
-* Assume data already read into R (see Importing Data course)
-* Propose a three step data cleaning process
-  * Exploring raw data
-  * Tidying data
-  * Preparing data for analysis
-* Exploring raw data
-  * View the structure of your data
-  * Summarize your data
-  * Look at your data
-  * Visualize your data (with base R)
+## Introduction to Ideas of Inference
 
-## Tidying data
+Using case studies:
 
-* Principles of tidy data
-* Common symptoms of messy data
-* Introduction to tidyr
-* Tidying messy data with tidyr
+* Examples/definition of null and alternative hypotheses
+* Examples of simulated randomization distributions
+  * Based on swapping data, create a randomized sample
+  * Use dotplots and histograms
+  * Count number of randomized samples above/below various cutoffs (including zero)
+* Conclusions based on randomization distributions
+  * Sometimes we can conclude the data are different from the population, sometimes we can't.
+  * Different types of errors have different consequences.
+* R: ggplot2 - histograms and dotplots
 
-## Preparing data for analysis
+## Running Randomization Test: gender discrimination
 
-* Type conversion
-* String manipulation (stringr)
-* Missing and special values
-* Outliers and obvious errors
+* Start with numerical and graphical summaries of the data, remind ourselves what we'd like to investigate about the population.
+* Create many randomized samples, for the first few find the statistic(s) of interest.
+* Plot the many sample statistics from the randomized samples.
+* Evaluate the consistency of the observed data with the distribution of the randomized sample statistics.
+* R: sample(), resample(), shuffle()
 
-## Putting it all together
 
-* Large messy dataset
-* Use methods from entire course
-* Now have the tools necessary to take on the messiest of datasets
-* Recommend practicing on more real datasets
+## Running Randomization Test: opportunity cost
+
+* Repeat the complete randomization hypothesis test analysis
+* Define statistical significance and significance level
+   * what would the data need to be for significance?
+* Define decision errors
+   * which error is worse?
+   * what error might we have made?
+* R: quantile(), count(), prop(), perc()
+
+## Power Simulation
+
+* Using alternative (not null) setting, define power
+* Power simulation using randomization distribution
+* Analysis of different aspects of power (sample size, effect size)
+* R: ggplot2 - density plot, summary()
+
+## Confidence Intervals (???)
+
+* The original outline mentions CIs, but I'm not totally convinced that they flow nicely here.
