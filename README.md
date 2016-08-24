@@ -10,8 +10,10 @@ One of the foundation aspects of statistical analysis is inference:  the act of 
 * Write out the steps of a randomization algorithm.
 * Run a randomization test in R.
 * Write-up an entire hypothesis test in R from stating hypotheses through concluding about the population / process.
-* Connect the idea of a confidence interval to knowledge of the population values.
-* Predict how a confidence interval will be impacted by changing values of the data, the sample size, and the degree of confidence desired.
+* Calculate power based on given values for effect and sample sizes.
+
+* (?) Connect the idea of a confidence interval to knowledge of the population values.
+* (?) Predict how a confidence interval will be impacted by changing values of the data, the sample size, and the degree of confidence desired.
 
 ## Prerequisites
 
