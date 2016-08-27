@@ -1,4 +1,3 @@
-
 ## Introduction to Ideas of Inference
 
 Using case studies:
@@ -19,7 +18,6 @@ Using case studies:
 * Plot the many sample statistics from the randomized samples.
 * Evaluate the consistency of the observed data with the distribution of the randomized sample statistics.
 * R: sample(), resample(), shuffle()
-
 
 ## Running Randomization Test: opportunity cost
 
