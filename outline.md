@@ -10,7 +10,6 @@ Using case studies:
   * Count number of randomized samples above/below various cutoffs (including zero)
 * Conclusions based on randomization distributions
   * Sometimes we can conclude the data are different from the population, sometimes we can't.
-  * Different types of errors have different consequences.
 * R: ggplot2 - histograms and dotplots 
 
 ## Running Randomization Test: gender discrimination
@@ -28,6 +27,7 @@ Using case studies:
 * Define statistical significance and significance level
    * what would the data need to be for significance?
 * Define decision errors
+  * Different types of errors have different consequences.
    * which error is worse?
    * what error might we have made?
 * R: quantile(), count(), prop(), perc()

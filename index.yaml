@@ -1,41 +1,49 @@
-- chapter_title: Introduction and exploring raw data
-  chapter_description: Just some description
+- chapter_title: Introduction to Ideas of Inference
+  chapter_description: lots of examples and big picture ideas about the logic of inference.  
   exercises:
   -   type    : VideoExercise
       title   : Welcome to the course!
-      content : Introduction and summary of data cleaning process
+      content : Introduction and summary of ideas of inference.  In particular, what we assume is happening (the null hypothesis) and what we'd like to show (the alternative hypothesis).
       
   -   type    : MultipleChoiceExercise
-      title   : The data cleaning process
-      content : Which is not part of the data cleaning process as outlined in video? Removing or replacing missing data
-  
-  -   type    : NormalExercise
-      title   : Here's what messy data looks like
-      content : Use pre-code to display data from final challenge using head(..., n = 20)
-      
-  -   type    : NormalExercise
-      title   : Here's what clean data looks like
-      content : Use pre-code to clean the data in full and display the result with head(..., n = 20)
+      title   : Hypotheses
+      content : Which would be a good null hypothesis for the example?
+
+  -   type    : MultipleChoiceExercise
+      title   : Hypotheses
+      content : Which would be a good alternative hypothesis for the example?
   
   -   type    : VideoExercise
-      title   : Exploring raw data
-      content : Introduce basic functions - class(), dim(), str()/glimpse(), summary(), names(), head(), tail(), tbl_df(), print(), hist(), plot()
+      title   : Randomized distributions
+      content : I'd really like a demo here (not in R).  Ones that I've seen before are at: http://www.rossmanchance.com/applets/ChiSqShuffle.html?FET=1 (click on show shuffle options); http://www.rossmanchance.com/applets/AnovaShuffle.htm?hideExtras=2 (click on show shuffle options); lots here: http://www.lock5stat.com/StatKey/index.html; or here: http://blog.revolutionanalytics.com/2014/10/statistics-doesnt-have-to-be-that-hard.html
+      
+  -   type    : NormalExercise
+      title   : Randomly allocating samples
+      content : Use pre-code with either do() or sample() to have them create a handful of new samples taken from a null distribution
   
   -   type    : NormalExercise
-      title   : Getting the class and dimensions of your data
-      content : class(), dim()
+      title   : Randomization dotplot
+      content : using geom_dotplot visualize the distribution of the samples from the previous exercise
   
   -   type    : NormalExercise
-      title   : Viewing the structure of your data
-      content : str(), glimpse(), summary(), names()
+      title   : Randomization histogram
+      content : using more samples and geom_histogram, create a full randomization distribution
+  
+  -   type    : VideoExercise
+      title   : Using the randomization histogram
+      content : Discussion of what they did in R with the extension of the comparison of the null distribution (what they did) and the observed statistic value
   
   -   type    : NormalExercise
-      title   : Looking at your data
-      content : head(), tail(), tbl_df(), print()
+      title   : Do the data come from the population?
+      content : sum(), count(), prop(), perc()  [all from mosaic]
   
-  -   type    : NormalExercise
-      title   : Visualizing your data
-      content : hist(), plot()
+  -   type    : MultipleChoiceExercise
+      title   : Conclusions
+      content : what can we conclude from the analysis?
+
+  -   type    : VideoExercise
+      title   : Study Conclusions
+      content : Discussion of what we can and can't conclude based on the analysis above.
 
 - chapter_title : Tidying data
   exercises:
