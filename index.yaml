@@ -45,79 +45,78 @@
       title   : Study Conclusions
       content : Discussion of what we can and can't conclude based on the analysis above.
 
-- chapter_title : Tidying data
+- chapter_title : Completing a Randomization Test: gender discrimination
+  chapter_description: Now focusing on a specific example, the student will run the randomization test on their own.  
   exercises:
+
   -   type    : VideoExercise
-      title   : Introduction to tidy data
-      content : Principles of tidy data and common symptoms of messy data
+      title   : Example: gender discrimination
+      content : Introduction of the example and the scientific question.
   
   -   type    : MultipleChoiceExercise
-      title   : Principles of tidy data
-      content : Which is NOT a principle of tidy data? A variable contains all values measured on the same unit across attributes
-  
-  -   type    : MultipleChoiceExercise
-      title   : Common symptoms of messy data
-      content : Which is NOT a common symptom of messy data? A table contains only one type of observational unit
-  
-  -   type    : VideoExercise
-      title   : Introduction to tidyr
-      content : Core functions and use cases of tidyr
-  
-  -   type    : MultipleChoiceExercise
-      title   : Functions in tidyr
-      content : Which is not a function in tidyr? filter()
-  
-  -   type    : MultipleChoiceExercise
-      title   : What kind of messy are the BMI data?
-      content : Which symptom of messy data seen in BMI data? Column headers are values, not variable names
-  
-  -   type    : NormalExercise
-      title   : Gathering columns into key-value pairs
-      content : gather()
-  
-  -   type    : NormalExercise
-      title   : Spreading key-value pairs into columns
-      content : spread()
-  
-  -   type    : NormalExercise
-      title   : Separating columns
-      content : separate()
-  
-  -   type    : NormalExercise
-      title   : Uniting columns
-      content : unite()
-  
-  -   type    : VideoExercise
-      title   : Addressing common symptoms of messy data
-      content : Review of common symptoms
-  
-  -   type    : NormalExercise
-      title   : Column headers are values, not variable names
-      content : gather()
-  
-  -   type    : NormalExercise
-      title   : Multiple values are stored in one column
-      content : separate()
-  
-  -   type    : NormalExercise
-      title   : Variables are stored in both rows and columns
-      content : gather(), spread()
-  
-  -   type    : VideoExercise
-      title   : A very brief introduction to manipulating data with dplyr
-      content : The next two exercises could be done using base R, but we will teach you the dplyr way since it's easier to learn and integrates seamlessly with tidyr
+      title   : Gender discrimination hypotheses
+      content : Which are the null and alternative hypotheses related to the example?
       
   -   type    : NormalExercise
-      title   : Multiple types of observational units are stored in the same table
-      content : Use select() and distinct() to break one table into two
+      title   : Summarizing gender discrimination
+      content : Calculating summary statistics, prop(), perc()
   
   -   type    : NormalExercise
-      title   : A single observational unit is stored in multiple tables
-      content : Use inner_join() to join two tables into one
+      title   : Randomizing gender discrimination
+      content : create a randomization distribution of the statistic which is the difference in proportions
+  
+  -   type    : VideoExercise
+      title   : Distribution of statistics
+      content : Discussion of how the difference in proportions was chosen.  Talk about sample size as it impacts variability and how different sample sizes would make comparing number of successes as meaningless.  Also how, generally, there are lots of statistics that would lead to a complete analysis.
+  
+  -   type    : MultipleChoiceExercise
+      title   : Reflecting on analysis
+      content : Given the statistic they calculated and the distribution the created, what do they think of the conclusion?
 
-- chapter_title : Preparing data for analysis
-  chapter_description: Just a description.
+  -   type    : NormalExercise
+      title   : Critical Region
+      content : quantile() to figure out different critical regions
+
+  -   type    : NormalExercise
+      title   : Two-sided critical Region
+      content : exercise to get them thinking about the other side of the distribution and that it isn't relevant in this scenario
+  
+  -   type    : VideoExercise
+      title   : Why 0.05?
+      content : www.openintro.org/why05 
+
+  -   type    : MultipleChoiceExercise
+      title   : How does sample size affect results?
+      content : With a .05 cutoff, how big would the observed result have to be to reject H0 GIVEN changes in sample size.
+  
+  -   type    : NormalExercise
+      title   : Sample size in randomization distribution
+      content : Vary the sample size to calculate 4 different randomization distributions
+  
+  -   type    : NormalExercise
+      title   : Sample size for critical region
+      content : Using the randomization distributions with different sample sizes, calculate different cutoffs for significance
+  
+  -   type    : VideoExercise
+      title   : What is a p-value?
+      content : Bringing together the ideas they've worked through above with the definition of a p-value.  The p-value measures the degree of disagreement between the data and the null hypothesis.
+  
+  -   type    : NormalExercise
+      title   : Calculating p-values
+      content : calculate the p-value given a randomization distribution(s) (made up, different from gender data)
+  
+  -   type    : NormalExercise
+      title   : Calculating two-sided p-values
+      content : calculate a two-sided p-value given a randomization distribution(s) (made up, different from gender data)
+  
+  -   type    : VideoExercise
+      title   : Summary of gender discrimination
+      content : Summarize what we can say about gender discrimination.  Note that we are given a randomized study, so it makes sense to infer causal conclusions.  It is not, however, a random sample from the population, so we should be wary of concluding back to a larger population.  Additionally, the p-value is 0.02 which is thought of to be moderately significant and not extremely significant.
+
+- chapter_title : Hypothesis testing Errors: opportunity cost
+  chapter_description: We will continue with a new example and the same structure of creating a randomization test.  Here, however, the focus will be on different errors (type I and type II), how they are made, when one is worse than another, and how things like sample size and effect size affect the error rates.
   exercises :
+
   -   type    : VideoExercise
       title   : Issues when preparing data for analysis
       content : type conversion, string manipulation, missing and special values, outliers and obvious errors
@@ -178,7 +177,7 @@
       title   : Dealing with outliers and obvious errors
       content : str_replace()
 
-- chapter_title: Putting it all together
+- chapter_title: Simulating Power
   exercises :
   -   type    : VideoExercise
       title   : Time to put it all together!
