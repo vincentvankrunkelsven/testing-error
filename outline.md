@@ -28,9 +28,9 @@ Using case studies:
   * Different types of errors have different consequences.
    * which error is worse?
    * what error might we have made?
-* R: quantile(), count(), prop(), perc()
 
-## Power Simulation
+
+## Power of Inference
 
 * Using alternative (not null) setting, define power
 * Power simulation using randomization distribution

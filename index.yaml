@@ -102,6 +102,10 @@
       content : Bringing together the ideas they've worked through above with the definition of a p-value.  The p-value measures the degree of disagreement between the data and the null hypothesis.
   
   -   type    : NormalExercise
+      title   : Calculating THE p-values
+      content : have them do the actual p-value caluction that brings together all the pieces above
+  
+  -   type    : NormalExercise
       title   : Calculating p-values
       content : calculate the p-value given a randomization distribution(s) (made up, different from gender data)
   
@@ -118,123 +122,108 @@
   exercises :
 
   -   type    : VideoExercise
-      title   : Issues when preparing data for analysis
-      content : type conversion, string manipulation, missing and special values, outliers and obvious errors
-  
-  -   type    : NormalExercise
-      title   : types of variables in R
-      content : Numeric (also int, dbl in dplyr), character (aka strings), dates, factor, logical
-  
-  -   type    : NormalExercise
-      title   : Common type conversions
-      content : Characters to numerics, characters to factors, factors to characters
+      title   : Example: opportunity cost
+      content : Introduction to the example, layout of the data, reserach question, tactile simulation via cards (?)
       
   -   type    : NormalExercise
-      title   : Working with dates
-      content : Small taste of lubridate - ymd(), ymd_hms(), floor_date()
-  
-  -   type    : VideoExercise
-      title   : String manipulation in R
-      content : stringr - str_trim(), str_pad(), str_replace(), str_locate(); base R - toupper(), tolower()
+      title   : Summarizing opportunity cost
+      content : Calculating summary statistics, prop(), perc()
+
+  -   type    : NormalExercise
+      title   : Plotting opportunity cost
+      content : Barchart for the data
   
   -   type    : NormalExercise
-      title   : Trimming and padding strings
-      content : str_trim(), str_pad()
+      title   : Randomizing opportunity cost
+      content : create a randomization distribution of the statistic which is the difference in proportions
       
   -   type    : NormalExercise
-      title   : Upper and lower case
-      content : toupper(), tolower()
-  
-  -   type    : NormalExercise
-      title   : Finding and replacing strings
-      content : str_locate(), str_replace()
+      title   : Summarizing opportunity cost
+      content : using the randomization distribution, compute the p-value
+
+  -   type    : MultipleChoiceExercise
+      title   : Opportunity cost conclusion
+      content : What can we conclude (in words) given the analysis?
   
   -   type    : VideoExercise
-      title   : Missing and special values
-      content : Missing values - NA and common variations ("", "#N/A", etc.); special values - NaN, Inf, etc.
+      title   : Errors and their consequences
+      content : Discussion of errors, how we make statistical conclusions (control type I error), our knowledge of which error comes from our decision not from truth (which we can't ever know)
   
   -   type    : MultipleChoiceExercise
-      title   : types of missing and special values in R
-      content : Which is NOT a missing or special value in R? "#N/A"
+      title   : Different choice of error rate
+      content : What if we never want to make a type II error, what is our decision?  (Never reject)
       
-  -   type    : NormalExercise
-      title   : Finding missing values
-      content : is.na(), complete.cases()
+  -   type    : MultipleChoiceExercise
+      title   : Errors for two-sided hypotheses
+      content : What are type I and type II errors for the TWO-sided hypotheses related to the opportunity costs example
   
   -   type    : NormalExercise
-      title   : Dealing with missing and special values
-      content : is.na(), str_replace()
+      title   : p-value for two-sided hypotheses: opportunity costs
+      content : compute the p-value for two-sided hypotheses, first compute the p-value for one tail of the distribution, then double that value to get the two-sided p-value. That's it!
   
   -   type    : VideoExercise
-      title   : Outliers and obvious errors
-      content : What are outliers and how to handle them? What are some examples of obvious errors and how should you deal with them?
-      
-  -   type    : MultipleChoice
-      title   : Identifying outliers and obvious errors
-      content : Which of the following are most useful for identifying outliers? summary() and hist()
+      title   : Hypotheses should be set *before* seeing data
+      content : Discussion / simulation on why we need to set the hypotheses first
   
   -   type    : NormalExercise
-      title   : Dealing with outliers and obvious errors
-      content : str_replace()
+      title   : Error rates when snooping
+      content : Have them simulate data with snooping to see that their type I error rate doubles if testing two sided
+      
 
-- chapter_title: Simulating Power
+- chapter_title: Power of Inference
   exercises :
   -   type    : VideoExercise
-      title   : Time to put it all together!
-      content : Review exploring data, tidying data, and preparing data for analysis
+      title   : Type I Errors
+      content : Revisit all the ideas of simulation under the null setting.  Notice that if the null is true two things happen (1) we can only commit type I errors, and (2) because we've controlled the type I error rate, we don't make a huge number of errors
   
   -   type    : NormalExercise
-      title   : Exploring your data
-      content : str()/glimpse(), head(), tail()
-      
-  -   type    : MultipleChoiceExercise
-      title   : Violating a principle of tidy data
-      content : Which principle of tidy data is violated? Column headers are variables
+      title   : Simulating type I error
+      content : start with two populations (null true) and select samples.  calculate type I error rate.
       
   -   type    : NormalExercise
-      title   : Gathering your data
-      content : gather()
+      title   : Correct null conclusion
+      content : With previous simulation, consider that we make the correct null conclusion 95% of the time
       
   -   type    : VideoExercise
-      title   : Preparing your data for analysis
-      content : Data are tidy, now what? Explore some more.
+      title   : Type II Errors
+      content : Now the idea is that the null is NOT true.  Description of what this means, how we'd need a *specific* alternative to be able to model anything.  Demonstration of how the alternative scenario creates a sampling distribution which is shifted from the null sampling distribution, etc.
+      
+  -   type    : NormalExercise
+      title   : Simulation of type II error: effect size
+      content : By increasing the effect size, we can cut down on the type II error rate
+  
+  -   type    : NormalExercise
+      title   : Simulation of type II error: sample size
+      content : By increasing the sample size, we can cut down on the type II error rate
+      
+  -   type    : VideoExercise
+      title   : It is all about power
+      content : Keeping in mind that the goal of almost all inferential studies is to reject the null hypothesis, we want high power.  Power is the opposite of a type II error.  It is connected to type I error, but as a result and not directly.
+      
+  -   type    : NormalExercise
+      title   : Simulation of power: effect size
+      content : By increasing the effect size, we can increase power
+  
+  -   type    : NormalExercise
+      title   : Simulation of power: sample size
+      content : By increasing the sample size, we can increase power
+      
+  -   type    : MultipleChoiceExercise
+      title   : Why do we prefer big effect size and big sample size?
+      content : A question or two about what is going on...  that is, as the truth diverges more and more from the null, the randomness within the data no longer swamps out the signal differntiating the null from the alternative.
+      
+  -   type    : VideoExercise
+      title   : False positives 
+      content : Discussion of how the false discovery rate can explode with exploratory science.  Examples of reproducibility problems.
   
   -   type    : MultipleChoiceExercise
-      title   : What else do you see?
-      content : Missing values coded as "#N/A", numerics and dates are stored as characters
+      title   : Exploratory inference
+      content : Why does a huge number of null studies impact how we interpret the whole thing?  It is because we can't differentiate the null studies from the non-null ones.
       
   -   type    : NormalExercise
-      title   : Dealing with missing values
-      content : Recode "#N/A" as NA
-      
-  -   type    : NormalExercise
-      title   : Adjusting variable types
-      content : Use as.numeric() and ymd()
-  
-  -   type    : NormalExercise
-      title   : Understanding the distribution of your data
-      content : summary(), hist()
-      
-  -   type    : MultipleChoiceExercise
-      title   : What else did you find?
-      content : Extreme values, negative ages, multiple values of 9999, categorical variable coded multiple ways (i.e. "Male", "MALE", "M")
+      title   : False discovery rates
+      content : Calculate FDR given certain settings.
   
   -   type    : VideoExercise
-      title   : Handling the outliers and strange values
-      content : Spoke to researchers and data input people. Researchers say the extreme values are still plausible and important to capture. Some data input people coded missing values as negative and others as 9999.
-  
-  -   type    : NormalExercise
-      title   : Replacing strange values
-      content : Replace negative values and 9999s with NA
-      
-  -   type    : NormalExercise
-      title   : Making categorical variables uniform
-      content : Correct alternative codings of categorical variable
-  
-  -   type    : NormalExercise
-      title   : Confirming things look better
-      content : str()/glimpse(), summary(), head(), tail(), plot()
-  
-  -   type    : VideoExercise
-      title   : Congratulations, your data are clean!
-      content : Data are clean and ready for analysis
+      title   : Summary of inference
+      content : Summary of inference
