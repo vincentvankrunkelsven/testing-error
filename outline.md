@@ -41,4 +41,5 @@ Using case studies:
 
 * Estimation is an inferential method which is an alternative to hypothesis testing.
 * As before, we'll simulate to understand how the sample varies from the population.  Now we sample from the sample (because we are not using the logic which necessitates the null setting).
-* 
+* Using the empirical rule, we build a confidence interval for the population proportion.  That is, we estimate the value of interest instead of testing it against a preconceived (null) value.
+* Additionally, we analyze the effect of sample size and confidence level on how precise the estimation is.
