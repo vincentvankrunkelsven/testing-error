@@ -103,7 +103,7 @@
   
   -   type    : NormalExercise
       title   : Calculating THE p-values
-      content : have them do the actual p-value caluction that brings together all the pieces above
+      content : have them do the actual p-value calculation that brings together all the pieces above
   
   -   type    : NormalExercise
       title   : Calculating p-values
@@ -123,7 +123,7 @@
 
   -   type    : VideoExercise
       title   : Example: opportunity cost
-      content : Introduction to the example, layout of the data, reserach question, tactile simulation via cards (?)
+      content : Introduction to the example, layout of the data, research question, tactile simulation via cards (?)
       
   -   type    : NormalExercise
       title   : Summarizing opportunity cost
@@ -227,3 +227,71 @@
   -   type    : VideoExercise
       title   : Summary of inference
       content : Summary of inference
+      
+- chapter_title : Confidence Intervals
+  chapter_description: Big ideas of confidence intervals (estimation instead of testing).  We'll switch to one proportion for ease in interpretation.  Focus on foundational ideas, not specific details
+  exercises:
+
+  -   type    : VideoExercise
+      title   : Confidence Intervals
+      content : Introduction to the idea of confidence intervals.  Focus on the idea of wanting to know the parameter.  Example about the presidential election.
+  
+  -   type    : MultipleChoiceExercise
+      title   : What is the parameter?
+      content : Using the current presidential election - 6 months prior!!  We get to talk about so many good aspects of understanding parameters.
+      
+  -   type    : NormalExercise
+      title   : Re-sampling from a sample - tiny n
+      content : Notice that the variability in p-hat is HUGE
+
+  -   type    : NormalExercise
+      title   : Re-sampling from a sample - big n
+      content : Notice that the variability in p-hat is non-existent
+
+  -   type    : NormalExercise
+      title   : Re-sampling from a sample - same n
+      content : Notice that we get variability in p-hat that seems reasonable
+      
+  -   type    : VideoExercise
+      title   : Variability in p-hat
+      content : Discuss their normal exercises.  Maybe also talk about SE(phat) = sqrt(p(1-p)/n)... or at least that we know a formula which works well a lot of the time. Then the big important point is that true p is as far from p-hat as p-hat is from true p.  Measured by exactly the variability we just saw.  Also, show Empirical Rule.
+
+  -   type    : NormalExercise
+      title   : Empirical Rule
+      content : Have them find the SE of the resampled phats
+
+  -   type    : NormalExercise
+      title   : Empirical Rule
+      content : Have them find the values for 95% of phats  (or resampled phats?)
+
+  -   type    : NormalExercise
+      title   : t-Confidence Interval
+      content : Have them actually make the CI
+
+  -   type    : VideoExercise
+      title   : Interpreting CIs and technical conditions
+      content : Discuss the interval they made and what it says about the parameter.  Then discus how the process works for any statistic/parameter pair when the technical conditions are met.  State technical conditions and refer to later in the course (averages) for more details.
+      
+  -   type    : NormalExercise
+      title   : Sample size effects CI
+      content : Repeat process of finding CI for smaller / larger sample sizes
+
+  -   type    : NormalExercise
+      title   : Sample proportion value effects CI
+      content : Repeate process of finding CI for different values of the sample proportion (not much change here!)
+
+  -   type    : NormalExercise
+      title   : Confidence level effects CI
+      content : Repeate process of finding CI for different values of the confidence level
+      
+  -   type    : VideoExercise
+      title   : Summary of Statistical Inference / Estimation
+      content : Summary of Statistical Inference / Estimation
+      
+
+
+
+
+      
+      
+      

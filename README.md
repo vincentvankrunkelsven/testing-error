@@ -11,9 +11,8 @@ One of the foundational aspects of statistical analysis is inference: the proces
 * Run a randomization test in R.
 * Write-up an entire hypothesis test in R from stating hypotheses through forming conclusions about the population or process.
 * Calculate statistical power based on given values for effect and sample sizes.
-
-* (?) Connect the idea of a confidence interval to knowledge of the population values.
-* (?) Predict how a confidence interval will be impacted by changing values of the data, the sample size, and the degree of confidence desired.
+* Connect the idea of a confidence interval to knowledge of the population values.
+* Predict how a confidence interval will be impacted by changing values of the data, the sample size, and the degree of confidence desired.
 
 ## Prerequisites
 

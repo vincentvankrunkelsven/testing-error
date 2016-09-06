@@ -17,7 +17,7 @@ Using case studies:
 * Create many randomized samples, for the first few find the statistic(s) of interest.
 * Plot the many sample statistics from the randomized samples.
 * Evaluate the consistency of the observed data with the distribution of the randomized sample statistics.
-* R: sample(), resample(), shuffle()
+* R: sample_n(), rep_sample_n()
 
 ## Running Randomization Test: opportunity cost
 
@@ -35,8 +35,10 @@ Using case studies:
 * Using alternative (not null) setting, define power
 * Power simulation using randomization distribution
 * Analysis of different aspects of power (sample size, effect size)
-* R: ggplot2 - density plot, summary()
+* R: ggplot2 - density plot, summarise()
 
-## Confidence Intervals (???)
+## Confidence Intervals
 
-* The original outline mentions CIs, but I'm not totally convinced that they flow nicely here.
+* Estimation is an inferential method which is an alternative to hypothesis testing.
+* As before, we'll simulate to understand how the sample varies from the population.  Now we sample from the sample (because we are not using the logic which necessitates the null setting).
+* 
