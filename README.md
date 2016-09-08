@@ -20,3 +20,19 @@ One of the foundational aspects of statistical analysis is inference: the proces
 * Introduction to Data
 * Exploratory Data Analysis
 * Correlation and Regression
+
+## Course dev timeline
+
+* Sep 30 - Sample/solution code for all exercises
+* Oct 07 - Assignment text + instructions + video bullets for chapter 1
+* Oct 14 - Assignment text + instructions + video bullets for chapter 2
+* Oct 21 - Assignment text + instructions + video bullets for chapter 3
+* Oct 28 - Assignment text + instructions + video bullets for chapter 4
+* Nov 04 - Slides for chapters 1-2
+* Nov 11 - Slides for chapters 3-4
+* Nov 18 - Scripts for chapters 1-2
+* Dec 02 - Scripts for chapters 3-4 (accounting for holidays)
+* Dec 09 - Screencasts for all chapters
+* Dec 16 - Record videos
+* Dec 23 - Beta test
+* Dec 31 - Launch course
