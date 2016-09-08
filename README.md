@@ -1,5 +1,7 @@
 # Intro Stats: Foundations of Inference
 
+Course admin page: https://www.datacamp.com/teach/repositories/538/branches/master
+
 ## Course description
 
 One of the foundational aspects of statistical analysis is inference: the process of drawing conclusions about a larger population from a sample of data.  With reverse logic, we make an assumption about the population that we want to disprove using our data.  For example, to show that one medical treatment is better than another, we can assume that the two treatments lead to equal survival rates only to then be disproved by the data (hooray, our treatment is better!).  Additionally, we introduce the idea of a p-value, or the degree of disagreement between the data and the hypothesis.  And last, we dive into confidence intervals, which measure the magnitude of the effect of interest (e.g. how much better one treatment is than another).  Not only are ideas of inference fascinating and powerful in their own right, they are also used in almost all of science.  Understanding p-values and confidence intervals will allow you to rigorously interpret the way much of science is communicated.
