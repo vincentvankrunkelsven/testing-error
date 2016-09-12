@@ -14,7 +14,7 @@ Introduction and summary of ideas of inference.  In particular, what we assume i
 //videos.datacamp.com/transcoded/000_placeholders/v1/hls-temp.master.m3u8
 
 --- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:c85be55b78
-## Hypotheses
+## Hypotheses (1)
 
 Which would be a good null hypothesis for the example?
 
@@ -37,7 +37,7 @@ test_mc(2, feedback_msgs = c('wrong', 'right', 'wrong')) # if 2 is the correct o
 ```
 
 --- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:bf6d293913
-## Hypotheses
+## Hypotheses (2)
 
 Which would be a good alternative hypothesis for the example?
 
