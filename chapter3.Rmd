@@ -2,7 +2,7 @@
 title       : "Hypothesis testing Errors: opportunity cost"
 description : We will continue with a new example and the same structure of creating a randomization test.  Here, however, the focus will be on different errors (type I and type II), how they are made, when one is worse than another, and how things like sample size and effect size affect the error rates.
 
---- type:VideoExercise lang:r xp:50 skills:1
+--- type:VideoExercise lang:r xp:50 skills:1 key:e86e653f0a
 ## Example: opportunity cost
 
 Introduction to the example, layout of the data, research question, tactile simulation via cards (?)
@@ -13,7 +13,7 @@ Introduction to the example, layout of the data, research question, tactile simu
 *** =video_hls
 //videos.datacamp.com/transcoded/000_placeholders/v1/hls-temp.master.m3u8
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:2a037c969d
 ## Summarizing opportunity cost
 
 Calculating summary statistics, prop(), perc()
@@ -45,7 +45,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:5774145f35
 ## Plotting opportunity cost
 
 Barchart for the data
@@ -77,7 +77,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:82803adc6c
 ## Randomizing opportunity cost
 
 create a randomization distribution of the statistic which is the difference in proportions
@@ -109,7 +109,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:2a037c969d
 ## Summarizing opportunity cost
 
 using the randomization distribution, compute the p-value
@@ -141,7 +141,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:MultipleChoiceExercise lang:r xp:50 skills:1
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:ecbd3d92c0
 ## Opportunity cost conclusion
 
 What can we conclude (in words) given the analysis?
@@ -164,7 +164,7 @@ hint
 test_mc(2, feedback_msgs = c('wrong', 'right', 'wrong')) # if 2 is the correct option.
 ```
 
---- type:VideoExercise lang:r xp:50 skills:1
+--- type:VideoExercise lang:r xp:50 skills:1 key:445bbafcd6
 ## Errors and their consequences
 
 Discussion of errors, how we make statistical conclusions (control type I error), our knowledge of which error comes from our decision not from truth (which we can't ever know)
@@ -175,7 +175,7 @@ Discussion of errors, how we make statistical conclusions (control type I error)
 *** =video_hls
 //videos.datacamp.com/transcoded/000_placeholders/v1/hls-temp.master.m3u8
 
---- type:MultipleChoiceExercise lang:r xp:50 skills:1
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:c83d323545
 ## Different choice of error rate
 
 What if we never want to make a type II error, what is our decision?  (Never reject)
@@ -198,7 +198,7 @@ hint
 test_mc(2, feedback_msgs = c('wrong', 'right', 'wrong')) # if 2 is the correct option.
 ```
 
---- type:MultipleChoiceExercise lang:r xp:50 skills:1
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:068d39ca1d
 ## Errors for two-sided hypotheses
 
 What are type I and type II errors for the TWO-sided hypotheses related to the opportunity costs example
@@ -221,7 +221,7 @@ hint
 test_mc(2, feedback_msgs = c('wrong', 'right', 'wrong')) # if 2 is the correct option.
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:fb0c78768f
 ## p-value for two-sided hypotheses: opportunity costs
 
 compute the p-value for two-sided hypotheses, first compute the p-value for one tail of the distribution, then double that value to get the two-sided p-value. That's it!
@@ -253,7 +253,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:VideoExercise lang:r xp:50 skills:1
+--- type:VideoExercise lang:r xp:50 skills:1 key:07b42ab6a1
 ## Hypotheses should be set *before* seeing data
 
 Discussion / simulation on why we need to set the hypotheses first
@@ -264,7 +264,7 @@ Discussion / simulation on why we need to set the hypotheses first
 *** =video_hls
 //videos.datacamp.com/transcoded/000_placeholders/v1/hls-temp.master.m3u8
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:dd4166523b
 ## Error rates when snooping
 
 Have them simulate data with snooping to see that their type I error rate doubles if testing two sided
