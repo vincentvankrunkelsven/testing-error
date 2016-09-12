@@ -1,5 +1,5 @@
 ---
-title       : Completing a Randomization Test: gender discrimination
+title       : "Completing a Randomization Test: gender discrimination"
 description : Now focusing on a specific example, the student will run the randomization test on their own.
 
 --- type:VideoExercise lang:r xp:50 skills:1

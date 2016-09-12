@@ -1,6 +1,6 @@
 ---
 title       : Introduction to Ideas of Inference
-description : lots of examples and big picture ideas about the logic of inference.
+description : Lots of examples and big picture ideas about the logic of inference.
 
 --- type:VideoExercise lang:r xp:50 skills:1 key:56b5302de6
 ## Welcome to the course!

@@ -1,5 +1,5 @@
 ---
-title       : Hypothesis testing Errors: opportunity cost
+title       : "Hypothesis testing Errors: opportunity cost"
 description : We will continue with a new example and the same structure of creating a randomization test.  Here, however, the focus will be on different errors (type I and type II), how they are made, when one is worse than another, and how things like sample size and effect size affect the error rates.
 
 --- type:VideoExercise lang:r xp:50 skills:1
