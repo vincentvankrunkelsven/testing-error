@@ -30,13 +30,6 @@ Using case studies:
    * what error might we have made?
 
 
-## Power of Inference
-
-* Using alternative (not null) setting, define power
-* Power simulation using randomization distribution
-* Analysis of different aspects of power (sample size, effect size)
-* R: ggplot2 - density plot, summarise()
-
 ## Confidence Intervals
 
 * Estimation is an inferential method which is an alternative to hypothesis testing.
