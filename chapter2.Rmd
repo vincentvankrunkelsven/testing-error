@@ -2,7 +2,7 @@
 title       : "Completing a Randomization Test: gender discrimination"
 description : Now focusing on a specific example, the student will run the randomization test on their own.
 
---- type:VideoExercise lang:r xp:50 skills:1
+--- type:VideoExercise lang:r xp:50 skills:1 key:6043a3029d
 ## Example: gender discrimination
 
 Introduction of the example and the scientific question.
@@ -13,7 +13,7 @@ Introduction of the example and the scientific question.
 *** =video_hls
 //videos.datacamp.com/transcoded/000_placeholders/v1/hls-temp.master.m3u8
 
---- type:MultipleChoiceExercise lang:r xp:50 skills:1
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:2a7a6e7a00
 ## Gender discrimination hypotheses
 
 Which are the null and alternative hypotheses related to the example?
@@ -36,7 +36,7 @@ hint
 test_mc(2, feedback_msgs = c('wrong', 'right', 'wrong')) # if 2 is the correct option.
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:c4d9027dcd
 ## Summarizing gender discrimination
 
 Calculating summary statistics, prop(), perc()
@@ -68,7 +68,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:7dabb1c285
 ## Randomizing gender discrimination
 
 create a randomization distribution of the statistic which is the difference in proportions
@@ -100,7 +100,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:VideoExercise lang:r xp:50 skills:1
+--- type:VideoExercise lang:r xp:50 skills:1 key:214ddc88d0
 ## Distribution of statistics
 
 Discussion of how the difference in proportions was chosen.  Talk about sample size as it impacts variability and how different sample sizes would make comparing number of successes as meaningless.  Also how, generally, there are lots of statistics that would lead to a complete analysis.
@@ -111,7 +111,7 @@ Discussion of how the difference in proportions was chosen.  Talk about sample s
 *** =video_hls
 //videos.datacamp.com/transcoded/000_placeholders/v1/hls-temp.master.m3u8
 
---- type:MultipleChoiceExercise lang:r xp:50 skills:1
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:5b526ccd1f
 ## Reflecting on analysis
 
 Given the statistic they calculated and the distribution the created, what do they think of the conclusion?
@@ -134,7 +134,7 @@ hint
 test_mc(2, feedback_msgs = c('wrong', 'right', 'wrong')) # if 2 is the correct option.
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:43f7f4be76
 ## Critical Region
 
 quantile() to figure out different critical regions
@@ -166,7 +166,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:8177755245
 ## Two-sided critical Region
 
 exercise to get them thinking about the other side of the distribution and that it isn't relevant in this scenario
@@ -198,7 +198,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:VideoExercise lang:r xp:50 skills:1
+--- type:VideoExercise lang:r xp:50 skills:1 key:19c768bc6f
 ## Why 0.05?
 
 www.openintro.org/why05
@@ -209,7 +209,7 @@ www.openintro.org/why05
 *** =video_hls
 //videos.datacamp.com/transcoded/000_placeholders/v1/hls-temp.master.m3u8
 
---- type:MultipleChoiceExercise lang:r xp:50 skills:1
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:b76dc95b72
 ## How does sample size affect results?
 
 With a .05 cutoff, how big would the observed result have to be to reject H0 GIVEN changes in sample size.
@@ -232,7 +232,7 @@ hint
 test_mc(2, feedback_msgs = c('wrong', 'right', 'wrong')) # if 2 is the correct option.
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:4790473486
 ## Sample size in randomization distribution
 
 Vary the sample size to calculate 4 different randomization distributions
@@ -264,7 +264,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:5124699651
 ## Sample size for critical region
 
 Using the randomization distributions with different sample sizes, calculate different cutoffs for significance
@@ -296,7 +296,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:VideoExercise lang:r xp:50 skills:1
+--- type:VideoExercise lang:r xp:50 skills:1 key:6590b3f701
 ## What is a p-value?
 
 Bringing together the ideas they've worked through above with the definition of a p-value.  The p-value measures the degree of disagreement between the data and the null hypothesis.
@@ -307,7 +307,7 @@ Bringing together the ideas they've worked through above with the definition of 
 *** =video_hls
 //videos.datacamp.com/transcoded/000_placeholders/v1/hls-temp.master.m3u8
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:c5627bce8e
 ## Calculating THE p-values
 
 have them do the actual p-value calculation that brings together all the pieces above
@@ -339,7 +339,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:59076280e6
 ## Calculating p-values
 
 calculate the p-value given a randomization distribution(s) (made up, different from gender data)
@@ -371,7 +371,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:6e75cbd833
 ## Calculating two-sided p-values
 
 calculate a two-sided p-value given a randomization distribution(s) (made up, different from gender data)
@@ -403,7 +403,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:VideoExercise lang:r xp:50 skills:1
+--- type:VideoExercise lang:r xp:50 skills:1 key:7bf3a36164
 ## Summary of gender discrimination
 
 Summarize what we can say about gender discrimination.  Note that we are given a randomized study, so it makes sense to infer causal conclusions.  It is not, however, a random sample from the population, so we should be wary of concluding back to a larger population.  Additionally, the p-value is 0.02 which is thought of to be moderately significant and not extremely significant.
