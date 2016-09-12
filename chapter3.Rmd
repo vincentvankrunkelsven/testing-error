@@ -1,0 +1,298 @@
+---
+title       : Hypothesis testing Errors: opportunity cost
+description : We will continue with a new example and the same structure of creating a randomization test.  Here, however, the focus will be on different errors (type I and type II), how they are made, when one is worse than another, and how things like sample size and effect size affect the error rates.
+
+--- type:VideoExercise lang:r xp:50 skills:1
+## Example: opportunity cost
+
+Introduction to the example, layout of the data, research question, tactile simulation via cards (?)
+
+*** =video_link
+//player.vimeo.com/video/154783078
+
+*** =video_hls
+//videos.datacamp.com/transcoded/000_placeholders/v1/hls-temp.master.m3u8
+
+--- type:NormalExercise lang:r xp:100 skills:1
+## Summarizing opportunity cost
+
+Calculating summary statistics, prop(), perc()
+
+*** =instructions
+- instruction 1
+- instruction 2
+
+*** =hint
+hint comes here
+
+*** =pre_exercise_code
+```{r}
+# pec
+```
+
+*** =sample_code
+```{r}
+# sample code
+```
+
+*** =solution
+```{r}
+# solution code
+```
+
+*** =sct
+```{r}
+success_msg("Great work!")
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1
+## Plotting opportunity cost
+
+Barchart for the data
+
+*** =instructions
+- instruction 1
+- instruction 2
+
+*** =hint
+hint comes here
+
+*** =pre_exercise_code
+```{r}
+# pec
+```
+
+*** =sample_code
+```{r}
+# sample code
+```
+
+*** =solution
+```{r}
+# solution code
+```
+
+*** =sct
+```{r}
+success_msg("Great work!")
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1
+## Randomizing opportunity cost
+
+create a randomization distribution of the statistic which is the difference in proportions
+
+*** =instructions
+- instruction 1
+- instruction 2
+
+*** =hint
+hint comes here
+
+*** =pre_exercise_code
+```{r}
+# pec
+```
+
+*** =sample_code
+```{r}
+# sample code
+```
+
+*** =solution
+```{r}
+# solution code
+```
+
+*** =sct
+```{r}
+success_msg("Great work!")
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1
+## Summarizing opportunity cost
+
+using the randomization distribution, compute the p-value
+
+*** =instructions
+- instruction 1
+- instruction 2
+
+*** =hint
+hint comes here
+
+*** =pre_exercise_code
+```{r}
+# pec
+```
+
+*** =sample_code
+```{r}
+# sample code
+```
+
+*** =solution
+```{r}
+# solution code
+```
+
+*** =sct
+```{r}
+success_msg("Great work!")
+```
+
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1
+## Opportunity cost conclusion
+
+What can we conclude (in words) given the analysis?
+
+*** =instructions
+- option 1
+- option 2
+- option 3
+
+*** =hint
+hint
+
+*** =pre_exercise_code
+```{r}
+# pec
+```
+
+*** =sct
+```{r}
+test_mc(2, feedback_msgs = c('wrong', 'right', 'wrong')) # if 2 is the correct option.
+```
+
+--- type:VideoExercise lang:r xp:50 skills:1
+## Errors and their consequences
+
+Discussion of errors, how we make statistical conclusions (control type I error), our knowledge of which error comes from our decision not from truth (which we can't ever know)
+
+*** =video_link
+//player.vimeo.com/video/154783078
+
+*** =video_hls
+//videos.datacamp.com/transcoded/000_placeholders/v1/hls-temp.master.m3u8
+
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1
+## Different choice of error rate
+
+What if we never want to make a type II error, what is our decision?  (Never reject)
+
+*** =instructions
+- option 1
+- option 2
+- option 3
+
+*** =hint
+hint
+
+*** =pre_exercise_code
+```{r}
+# pec
+```
+
+*** =sct
+```{r}
+test_mc(2, feedback_msgs = c('wrong', 'right', 'wrong')) # if 2 is the correct option.
+```
+
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1
+## Errors for two-sided hypotheses
+
+What are type I and type II errors for the TWO-sided hypotheses related to the opportunity costs example
+
+*** =instructions
+- option 1
+- option 2
+- option 3
+
+*** =hint
+hint
+
+*** =pre_exercise_code
+```{r}
+# pec
+```
+
+*** =sct
+```{r}
+test_mc(2, feedback_msgs = c('wrong', 'right', 'wrong')) # if 2 is the correct option.
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1
+## p-value for two-sided hypotheses: opportunity costs
+
+compute the p-value for two-sided hypotheses, first compute the p-value for one tail of the distribution, then double that value to get the two-sided p-value. That's it!
+
+*** =instructions
+- instruction 1
+- instruction 2
+
+*** =hint
+hint comes here
+
+*** =pre_exercise_code
+```{r}
+# pec
+```
+
+*** =sample_code
+```{r}
+# sample code
+```
+
+*** =solution
+```{r}
+# solution code
+```
+
+*** =sct
+```{r}
+success_msg("Great work!")
+```
+
+--- type:VideoExercise lang:r xp:50 skills:1
+## Hypotheses should be set *before* seeing data
+
+Discussion / simulation on why we need to set the hypotheses first
+
+*** =video_link
+//player.vimeo.com/video/154783078
+
+*** =video_hls
+//videos.datacamp.com/transcoded/000_placeholders/v1/hls-temp.master.m3u8
+
+--- type:NormalExercise lang:r xp:100 skills:1
+## Error rates when snooping
+
+Have them simulate data with snooping to see that their type I error rate doubles if testing two sided
+
+*** =instructions
+- instruction 1
+- instruction 2
+
+*** =hint
+hint comes here
+
+*** =pre_exercise_code
+```{r}
+# pec
+```
+
+*** =sample_code
+```{r}
+# sample code
+```
+
+*** =solution
+```{r}
+# solution code
+```
+
+*** =sct
+```{r}
+success_msg("Great work!")
+```
+

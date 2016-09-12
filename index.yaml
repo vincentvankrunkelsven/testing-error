@@ -15,7 +15,7 @@
   
   -   type    : VideoExercise
       title   : Randomized distributions
-      content : I'd really like a demo here (not in R).  Ones that I've seen before are at: http://www.rossmanchance.com/applets/ChiSqShuffle.html?FET=1 (click on show shuffle options); http://www.rossmanchance.com/applets/AnovaShuffle.htm?hideExtras=2 (click on show shuffle options); lots here: http://www.lock5stat.com/StatKey/index.html; or here: http://blog.revolutionanalytics.com/2014/10/statistics-doesnt-have-to-be-that-hard.html
+      content : "I'd really like a demo here (not in R).  Ones that I've seen before are at: http://www.rossmanchance.com/applets/ChiSqShuffle.html?FET=1 (click on show shuffle options); http://www.rossmanchance.com/applets/AnovaShuffle.htm?hideExtras=2 (click on show shuffle options); lots here: http://www.lock5stat.com/StatKey/index.html; or here: http://blog.revolutionanalytics.com/2014/10/statistics-doesnt-have-to-be-that-hard.html"
       
   -   type    : NormalExercise
       title   : Randomly allocating samples
@@ -45,12 +45,12 @@
       title   : Study Conclusions
       content : Discussion of what we can and can't conclude based on the analysis above.
 
-- chapter_title : Completing a Randomization Test: gender discrimination
+- chapter_title : "Completing a Randomization Test: gender discrimination"
   chapter_description: Now focusing on a specific example, the student will run the randomization test on their own.  
   exercises:
 
   -   type    : VideoExercise
-      title   : Example: gender discrimination
+      title   : "Example: gender discrimination"
       content : Introduction of the example and the scientific question.
   
   -   type    : MultipleChoiceExercise
@@ -117,12 +117,12 @@
       title   : Summary of gender discrimination
       content : Summarize what we can say about gender discrimination.  Note that we are given a randomized study, so it makes sense to infer causal conclusions.  It is not, however, a random sample from the population, so we should be wary of concluding back to a larger population.  Additionally, the p-value is 0.02 which is thought of to be moderately significant and not extremely significant.
 
-- chapter_title : Hypothesis testing Errors: opportunity cost
+- chapter_title : "Hypothesis testing Errors: opportunity cost"
   chapter_description: We will continue with a new example and the same structure of creating a randomization test.  Here, however, the focus will be on different errors (type I and type II), how they are made, when one is worse than another, and how things like sample size and effect size affect the error rates.
   exercises :
 
   -   type    : VideoExercise
-      title   : Example: opportunity cost
+      title   : "Example: opportunity cost"
       content : Introduction to the example, layout of the data, research question, tactile simulation via cards (?)
       
   -   type    : NormalExercise
@@ -158,7 +158,7 @@
       content : What are type I and type II errors for the TWO-sided hypotheses related to the opportunity costs example
   
   -   type    : NormalExercise
-      title   : p-value for two-sided hypotheses: opportunity costs
+      title   : "p-value for two-sided hypotheses: opportunity costs"
       content : compute the p-value for two-sided hypotheses, first compute the p-value for one tail of the distribution, then double that value to get the two-sided p-value. That's it!
   
   -   type    : VideoExercise
@@ -228,11 +228,3 @@
   -   type    : VideoExercise
       title   : Summary of Statistical Inference / Estimation
       content : Summary of Statistical Inference / Estimation
-      
-
-
-
-
-      
-      
-      

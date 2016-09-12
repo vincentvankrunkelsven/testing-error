@@ -1,0 +1,245 @@
+---
+title       : Introduction to Ideas of Inference
+description : lots of examples and big picture ideas about the logic of inference.
+
+--- type:VideoExercise lang:r xp:50 skills:1
+## Welcome to the course!
+
+Introduction and summary of ideas of inference.  In particular, what we assume is happening (the null hypothesis) and what we'd like to show (the alternative hypothesis).
+
+*** =video_link
+//player.vimeo.com/video/154783078
+
+*** =video_hls
+//videos.datacamp.com/transcoded/000_placeholders/v1/hls-temp.master.m3u8
+
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1
+## Hypotheses
+
+Which would be a good null hypothesis for the example?
+
+*** =instructions
+- option 1
+- option 2
+- option 3
+
+*** =hint
+hint
+
+*** =pre_exercise_code
+```{r}
+# pec
+```
+
+*** =sct
+```{r}
+test_mc(2, feedback_msgs = c('wrong', 'right', 'wrong')) # if 2 is the correct option.
+```
+
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1
+## Hypotheses
+
+Which would be a good alternative hypothesis for the example?
+
+*** =instructions
+- option 1
+- option 2
+- option 3
+
+*** =hint
+hint
+
+*** =pre_exercise_code
+```{r}
+# pec
+```
+
+*** =sct
+```{r}
+test_mc(2, feedback_msgs = c('wrong', 'right', 'wrong')) # if 2 is the correct option.
+```
+
+--- type:VideoExercise lang:r xp:50 skills:1
+## Randomized distributions
+
+I'd really like a demo here (not in R).  Ones that I've seen before are at: http://www.rossmanchance.com/applets/ChiSqShuffle.html?FET=1 (click on show shuffle options); http://www.rossmanchance.com/applets/AnovaShuffle.htm?hideExtras=2 (click on show shuffle options); lots here: http://www.lock5stat.com/StatKey/index.html; or here: http://blog.revolutionanalytics.com/2014/10/statistics-doesnt-have-to-be-that-hard.html
+
+*** =video_link
+//player.vimeo.com/video/154783078
+
+*** =video_hls
+//videos.datacamp.com/transcoded/000_placeholders/v1/hls-temp.master.m3u8
+
+--- type:NormalExercise lang:r xp:100 skills:1
+## Randomly allocating samples
+
+Use pre-code with either do() or sample() to have them create a handful of new samples taken from a null distribution
+
+*** =instructions
+- instruction 1
+- instruction 2
+
+*** =hint
+hint comes here
+
+*** =pre_exercise_code
+```{r}
+# pec
+```
+
+*** =sample_code
+```{r}
+# sample code
+```
+
+*** =solution
+```{r}
+# solution code
+```
+
+*** =sct
+```{r}
+success_msg("Great work!")
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1
+## Randomization dotplot
+
+using geom_dotplot visualize the distribution of the samples from the previous exercise
+
+*** =instructions
+- instruction 1
+- instruction 2
+
+*** =hint
+hint comes here
+
+*** =pre_exercise_code
+```{r}
+# pec
+```
+
+*** =sample_code
+```{r}
+# sample code
+```
+
+*** =solution
+```{r}
+# solution code
+```
+
+*** =sct
+```{r}
+success_msg("Great work!")
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1
+## Randomization histogram
+
+using more samples and geom_histogram, create a full randomization distribution
+
+*** =instructions
+- instruction 1
+- instruction 2
+
+*** =hint
+hint comes here
+
+*** =pre_exercise_code
+```{r}
+# pec
+```
+
+*** =sample_code
+```{r}
+# sample code
+```
+
+*** =solution
+```{r}
+# solution code
+```
+
+*** =sct
+```{r}
+success_msg("Great work!")
+```
+
+--- type:VideoExercise lang:r xp:50 skills:1
+## Using the randomization histogram
+
+Discussion of what they did in R with the extension of the comparison of the null distribution (what they did) and the observed statistic value
+
+*** =video_link
+//player.vimeo.com/video/154783078
+
+*** =video_hls
+//videos.datacamp.com/transcoded/000_placeholders/v1/hls-temp.master.m3u8
+
+--- type:NormalExercise lang:r xp:100 skills:1
+## Do the data come from the population?
+
+sum(), count(), prop(), perc()  [all from mosaic]
+
+*** =instructions
+- instruction 1
+- instruction 2
+
+*** =hint
+hint comes here
+
+*** =pre_exercise_code
+```{r}
+# pec
+```
+
+*** =sample_code
+```{r}
+# sample code
+```
+
+*** =solution
+```{r}
+# solution code
+```
+
+*** =sct
+```{r}
+success_msg("Great work!")
+```
+
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1
+## Conclusions
+
+what can we conclude from the analysis?
+
+*** =instructions
+- option 1
+- option 2
+- option 3
+
+*** =hint
+hint
+
+*** =pre_exercise_code
+```{r}
+# pec
+```
+
+*** =sct
+```{r}
+test_mc(2, feedback_msgs = c('wrong', 'right', 'wrong')) # if 2 is the correct option.
+```
+
+--- type:VideoExercise lang:r xp:50 skills:1
+## Study Conclusions
+
+Discussion of what we can and can't conclude based on the analysis above.
+
+*** =video_link
+//player.vimeo.com/video/154783078
+
+*** =video_hls
+//videos.datacamp.com/transcoded/000_placeholders/v1/hls-temp.master.m3u8
+
