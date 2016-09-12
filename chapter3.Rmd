@@ -110,7 +110,7 @@ success_msg("Great work!")
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:a566675553
-## Summarizing opportunity cost (1)
+## Summarizing opportunity cost (2)
 
 using the randomization distribution, compute the p-value
 
