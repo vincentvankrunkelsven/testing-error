@@ -36,7 +36,7 @@ hint
 test_mc(2, feedback_msgs = c('wrong', 'right', 'wrong')) # if 2 is the correct option.
 ```
 
---- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:c85be55b78
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:bf6d293913
 ## Hypotheses
 
 Which would be a good alternative hypothesis for the example?
