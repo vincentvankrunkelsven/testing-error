@@ -2,7 +2,7 @@
 title       : Introduction to Ideas of Inference
 description : lots of examples and big picture ideas about the logic of inference.
 
---- type:VideoExercise lang:r xp:50 skills:1
+--- type:VideoExercise lang:r xp:50 skills:1 key:56b5302de6
 ## Welcome to the course!
 
 Introduction and summary of ideas of inference.  In particular, what we assume is happening (the null hypothesis) and what we'd like to show (the alternative hypothesis).
@@ -13,7 +13,7 @@ Introduction and summary of ideas of inference.  In particular, what we assume i
 *** =video_hls
 //videos.datacamp.com/transcoded/000_placeholders/v1/hls-temp.master.m3u8
 
---- type:MultipleChoiceExercise lang:r xp:50 skills:1
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:c85be55b78
 ## Hypotheses
 
 Which would be a good null hypothesis for the example?
@@ -36,7 +36,7 @@ hint
 test_mc(2, feedback_msgs = c('wrong', 'right', 'wrong')) # if 2 is the correct option.
 ```
 
---- type:MultipleChoiceExercise lang:r xp:50 skills:1
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:c85be55b78
 ## Hypotheses
 
 Which would be a good alternative hypothesis for the example?
@@ -59,7 +59,7 @@ hint
 test_mc(2, feedback_msgs = c('wrong', 'right', 'wrong')) # if 2 is the correct option.
 ```
 
---- type:VideoExercise lang:r xp:50 skills:1
+--- type:VideoExercise lang:r xp:50 skills:1 key:c7e875bde0
 ## Randomized distributions
 
 I'd really like a demo here (not in R).  Ones that I've seen before are at: http://www.rossmanchance.com/applets/ChiSqShuffle.html?FET=1 (click on show shuffle options); http://www.rossmanchance.com/applets/AnovaShuffle.htm?hideExtras=2 (click on show shuffle options); lots here: http://www.lock5stat.com/StatKey/index.html; or here: http://blog.revolutionanalytics.com/2014/10/statistics-doesnt-have-to-be-that-hard.html
@@ -70,7 +70,7 @@ I'd really like a demo here (not in R).  Ones that I've seen before are at: http
 *** =video_hls
 //videos.datacamp.com/transcoded/000_placeholders/v1/hls-temp.master.m3u8
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:0d505087e1
 ## Randomly allocating samples
 
 Use pre-code with either do() or sample() to have them create a handful of new samples taken from a null distribution
@@ -102,7 +102,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:9511617d95
 ## Randomization dotplot
 
 using geom_dotplot visualize the distribution of the samples from the previous exercise
@@ -134,7 +134,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:86b8b3fc6b
 ## Randomization histogram
 
 using more samples and geom_histogram, create a full randomization distribution
@@ -166,7 +166,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:VideoExercise lang:r xp:50 skills:1
+--- type:VideoExercise lang:r xp:50 skills:1 key:32c716a6af
 ## Using the randomization histogram
 
 Discussion of what they did in R with the extension of the comparison of the null distribution (what they did) and the observed statistic value
@@ -177,7 +177,7 @@ Discussion of what they did in R with the extension of the comparison of the nul
 *** =video_hls
 //videos.datacamp.com/transcoded/000_placeholders/v1/hls-temp.master.m3u8
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:3140c282c6
 ## Do the data come from the population?
 
 sum(), count(), prop(), perc()  [all from mosaic]
@@ -209,7 +209,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:MultipleChoiceExercise lang:r xp:50 skills:1
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:6578e81ab0
 ## Conclusions
 
 what can we conclude from the analysis?
@@ -232,7 +232,7 @@ hint
 test_mc(2, feedback_msgs = c('wrong', 'right', 'wrong')) # if 2 is the correct option.
 ```
 
---- type:VideoExercise lang:r xp:50 skills:1
+--- type:VideoExercise lang:r xp:50 skills:1 key:bd25a098e8
 ## Study Conclusions
 
 Discussion of what we can and can't conclude based on the analysis above.
