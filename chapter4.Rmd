@@ -2,7 +2,7 @@
 title       : Confidence Intervals
 description : Big ideas of confidence intervals (estimation instead of testing).  We'll switch to one proportion for ease in interpretation.  Focus on foundational ideas, not specific details
 
---- type:VideoExercise lang:r xp:50 skills:1
+--- type:VideoExercise lang:r xp:50 skills:1 key:be96c0f023
 ## Confidence Intervals
 
 Introduction to the idea of confidence intervals.  Focus on the idea of wanting to know the parameter.  Example about the presidential election.
@@ -13,7 +13,7 @@ Introduction to the idea of confidence intervals.  Focus on the idea of wanting 
 *** =video_hls
 //videos.datacamp.com/transcoded/000_placeholders/v1/hls-temp.master.m3u8
 
---- type:MultipleChoiceExercise lang:r xp:50 skills:1
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:3f2fd63176
 ## What is the parameter?
 
 Using the current presidential election - 6 months prior!!  We get to talk about so many good aspects of understanding parameters.
@@ -36,7 +36,7 @@ hint
 test_mc(2, feedback_msgs = c('wrong', 'right', 'wrong')) # if 2 is the correct option.
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:ca3fcf9628
 ## Re-sampling from a sample - tiny n
 
 Notice that the variability in p-hat is HUGE
@@ -68,7 +68,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:0919244cc1
 ## Re-sampling from a sample - big n
 
 Notice that the variability in p-hat is non-existent
@@ -100,7 +100,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:a74847b5eb
 ## Re-sampling from a sample - same n
 
 Notice that we get variability in p-hat that seems reasonable
@@ -132,7 +132,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:VideoExercise lang:r xp:50 skills:1
+--- type:VideoExercise lang:r xp:50 skills:1 key:0b1d4f227a
 ## Variability in p-hat
 
 Discuss their normal exercises.  Maybe also talk about SE(phat) = sqrt(p(1-p)/n)... or at least that we know a formula which works well a lot of the time. Then the big important point is that true p is as far from p-hat as p-hat is from true p.  Measured by exactly the variability we just saw.  Also, show Empirical Rule.
@@ -143,7 +143,7 @@ Discuss their normal exercises.  Maybe also talk about SE(phat) = sqrt(p(1-p)/n)
 *** =video_hls
 //videos.datacamp.com/transcoded/000_placeholders/v1/hls-temp.master.m3u8
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:13c2b4af1c
 ## Empirical Rule
 
 Have them find the SE of the resampled phats
@@ -175,7 +175,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:13c2b4af1c
 ## Empirical Rule
 
 Have them find the values for 95% of phats  (or resampled phats?)
@@ -207,7 +207,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:ffec7ad763
 ## t-Confidence Interval
 
 Have them actually make the CI
@@ -239,7 +239,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:VideoExercise lang:r xp:50 skills:1
+--- type:VideoExercise lang:r xp:50 skills:1 key:d995c94a95
 ## Interpreting CIs and technical conditions
 
 Discuss the interval they made and what it says about the parameter.  Then discus how the process works for any statistic/parameter pair when the technical conditions are met.  State technical conditions and refer to later in the course (averages) for more details.
@@ -250,7 +250,7 @@ Discuss the interval they made and what it says about the parameter.  Then discu
 *** =video_hls
 //videos.datacamp.com/transcoded/000_placeholders/v1/hls-temp.master.m3u8
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:db1cdf3564
 ## Sample size effects CI
 
 Repeat process of finding CI for smaller / larger sample sizes
@@ -282,7 +282,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:c796bc422f
 ## Sample proportion value effects CI
 
 Repeate process of finding CI for different values of the sample proportion (not much change here!)
@@ -314,7 +314,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:d57fc5f3bb
 ## Confidence level effects CI
 
 Repeate process of finding CI for different values of the confidence level
@@ -346,7 +346,7 @@ hint comes here
 success_msg("Great work!")
 ```
 
---- type:VideoExercise lang:r xp:50 skills:1
+--- type:VideoExercise lang:r xp:50 skills:1 key:9f579ff31d
 ## Summary of Statistical Inference / Estimation
 
 Summary of Statistical Inference / Estimation
