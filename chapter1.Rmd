@@ -90,6 +90,12 @@ hint comes here
 *** =sample_code
 ```{r}
 # sample code
+library(devtools)
+install_github("andrewpbray/oilabs")
+library(oilabs)
+ames %>% 
+  rep_sample_n(size = k, reps = n, replace = TRUE) %>%
+  summarise(x_bar = mean(area))
 ```
 
 *** =solution
