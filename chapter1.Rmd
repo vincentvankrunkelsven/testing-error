@@ -95,6 +95,12 @@ hint comes here
 *** =solution
 ```{r}
 # solution code
+library(devtools)
+install_github("andrewpbray/oilabs")
+library(oilabs)
+ames %>% 
+  rep_sample_n(size = k, reps = n, replace = TRUE) %>%
+  summarise(x_bar = mean(area))
 ```
 
 *** =sct
