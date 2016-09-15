@@ -90,8 +90,13 @@ hint comes here
 *** =sample_code
 ```{r}
 # sample code
-library(mosaic)
+suppressPackageStartupMessages(library(mosaic))
 library(NHANES)
+
+homes <- NHANES %>%
+  select(MaritalStatus, HomeOwn) %>%
+  filter(MaritalStatus %in% c("Married", "NeverMarried")) %>%
+  filter(HomeOwn %in% c("Own", "Rent"))
 
 set.seed(47)
 homes %>%
@@ -104,8 +109,13 @@ homes %>%
 *** =solution
 ```{r}
 # solution code
-library(mosaic)
+suppressPackageStartupMessages(library(mosaic))
 library(NHANES)
+
+homes <- NHANES %>%
+  select(MaritalStatus, HomeOwn) %>%
+  filter(MaritalStatus %in% c("Married", "NeverMarried")) %>%
+  filter(HomeOwn %in% c("Own", "Rent"))
 
 set.seed(47)
 homes %>%
