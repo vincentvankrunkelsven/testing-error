@@ -90,23 +90,29 @@ hint comes here
 *** =sample_code
 ```{r}
 # sample code
-library(devtools)
-install_github("andrewpbray/oilabs")
-library(oilabs)
-ames %>% 
-  rep_sample_n(size = k, reps = n, replace = TRUE) %>%
-  summarise(x_bar = mean(area))
+library(mosaic)
+library(NHANES)
+
+set.seed(47)
+homes %>%
+  mutate(HomeOwn_shuf = shuffle(HomeOwn)) %>%
+  group_by(MaritalStatus) %>%
+  dplyr::summarise(propown = prop(HomeOwn), propsh = prop(HomeOwn_shuf)) %>%
+  dplyr::summarise(d1 = diff(propown), d2 = diff(propsh))
 ```
 
 *** =solution
 ```{r}
 # solution code
-library(devtools)
-install_github("andrewpbray/oilabs")
-library(oilabs)
-ames %>% 
-  rep_sample_n(size = k, reps = n, replace = TRUE) %>%
-  summarise(x_bar = mean(area))
+library(mosaic)
+library(NHANES)
+
+set.seed(47)
+homes %>%
+  mutate(HomeOwn_shuf = shuffle(HomeOwn)) %>%
+  group_by(MaritalStatus) %>%
+  dplyr::summarise(propown = prop(HomeOwn), propsh = prop(HomeOwn_shuf)) %>%
+  dplyr::summarise(d1 = diff(propown), d2 = diff(propsh))
 ```
 
 *** =sct
