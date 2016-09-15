@@ -99,13 +99,16 @@ homes <- NHANES %>%
   select(MaritalStatus, HomeOwn) %>%
   filter(MaritalStatus %in% c("Married", "NeverMarried")) %>%
   filter(HomeOwn %in% c("Own", "Rent"))
-
+  
 set.seed(47)
 homes %>%
-  mutate(HomeOwn_shuf = shuffle(HomeOwn)) %>%
+  mutate(HomeOwn_perm = sample(HomeOwn)) %>%
   group_by(MaritalStatus) %>%
-  dplyr::summarise(propown = prop(HomeOwn), propsh = prop(HomeOwn_shuf)) %>%
-  dplyr::summarise(d1 = diff(propown), d2 = diff(propsh))
+  summarize(prop_own = base::mean(HomeOwn == "Own"), 
+            prop_own_perm = base::mean(HomeOwn_perm == "Own")) %>%
+  select(-MaritalStatus) %>%
+  lapply(diff) # NeverMarried - Married
+  
 ```
 
 *** =solution
@@ -121,10 +124,13 @@ homes <- NHANES %>%
 
 set.seed(47)
 homes %>%
-  mutate(HomeOwn_shuf = shuffle(HomeOwn)) %>%
+  mutate(HomeOwn_perm = sample(HomeOwn)) %>%
   group_by(MaritalStatus) %>%
-  dplyr::summarise(propown = prop(HomeOwn), propsh = prop(HomeOwn_shuf)) %>%
-  dplyr::summarise(d1 = diff(propown), d2 = diff(propsh))
+  summarize(prop_own = base::mean(HomeOwn == "Own"), 
+            prop_own_perm = base::mean(HomeOwn_perm == "Own")) %>%
+  select(-MaritalStatus) %>%
+  lapply(diff) # NeverMarried - Married
+  
 ```
 
 *** =sct
@@ -152,11 +158,34 @@ hint comes here
 *** =sample_code
 ```{r}
 # sample code
+
+set.seed(47)
+shuffdiff <- do(10)*homes %>%
+  mutate(HomeOwn_perm = sample(HomeOwn)) %>%
+  group_by(MaritalStatus) %>%
+  summarize(prop_own = base::mean(HomeOwn == "Own"), 
+            prop_own_perm = base::mean(HomeOwn_perm == "Own")) %>%
+  select(-MaritalStatus) %>%
+  lapply(diff) # NeverMarried - Married
+  
+ggplot(shuffdiff, aes(x=prop_own_perm)) + geom_dotplot()
+
 ```
 
 *** =solution
 ```{r}
 # solution code
+set.seed(47)
+shuffdiff <- do(10)*homes %>%
+  mutate(HomeOwn_perm = sample(HomeOwn)) %>%
+  group_by(MaritalStatus) %>%
+  summarize(prop_own = base::mean(HomeOwn == "Own"), 
+            prop_own_perm = base::mean(HomeOwn_perm == "Own")) %>%
+  select(-MaritalStatus) %>%
+  lapply(diff) # NeverMarried - Married
+  
+ggplot(shuffdiff, aes(x=prop_own_perm)) + geom_dotplot()
+
 ```
 
 *** =sct
@@ -184,11 +213,35 @@ hint comes here
 *** =sample_code
 ```{r}
 # sample code
+
+set.seed(47)
+shuffdiff <- do(1000)*homes %>%
+  mutate(HomeOwn_perm = sample(HomeOwn)) %>%
+  group_by(MaritalStatus) %>%
+  summarize(prop_own = base::mean(HomeOwn == "Own"), 
+            prop_own_perm = base::mean(HomeOwn_perm == "Own")) %>%
+  select(-MaritalStatus) %>%
+  lapply(diff) # NeverMarried - Married
+  
+  
+ggplot(shuffdiff, aes(x=prop_own_perm)) + geom_density()  
 ```
 
 *** =solution
 ```{r}
 # solution code
+
+set.seed(47)
+shuffdiff <- do(1000)*homes %>%
+  mutate(HomeOwn_perm = sample(HomeOwn)) %>%
+  group_by(MaritalStatus) %>%
+  summarize(prop_own = base::mean(HomeOwn == "Own"), 
+            prop_own_perm = base::mean(HomeOwn_perm == "Own")) %>%
+  select(-MaritalStatus) %>%
+  lapply(diff) # NeverMarried - Married
+  
+  
+ggplot(shuffdiff, aes(x=prop_own_perm)) + geom_density()  
 ```
 
 *** =sct
@@ -227,11 +280,20 @@ hint comes here
 *** =sample_code
 ```{r}
 # sample code
+ggplot(shuffdiff, aes(x=prop_own_perm)) + geom_density() + geom_vline(aes(xintercept=prop_own), col="red")
+ 
+shuffdiff %>%
+ dplyr::summarise(sum(prop_own > prop_own_perm) / n())
 ```
 
 *** =solution
 ```{r}
 # solution code
+
+ggplot(shuffdiff, aes(x=prop_own_perm)) + geom_density() + geom_vline(aes(xintercept=prop_own), col="red")
+ 
+shuffdiff %>%
+ dplyr::summarise(sum(prop_own > prop_own_perm) / n())
 ```
 
 *** =sct
