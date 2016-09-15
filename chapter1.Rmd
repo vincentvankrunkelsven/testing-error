@@ -93,6 +93,8 @@ hint comes here
 suppressPackageStartupMessages(library(mosaic))
 library(NHANES)
 
+#NHANES mimics a random sample of US residents
+
 homes <- NHANES %>%
   select(MaritalStatus, HomeOwn) %>%
   filter(MaritalStatus %in% c("Married", "NeverMarried")) %>%
