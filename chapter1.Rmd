@@ -90,7 +90,8 @@ hint comes here
 *** =sample_code
 ```{r}
 # sample code
-suppressPackageStartupMessages(library(mosaic))
+library(dplyr)
+library(ggplot2)
 library(NHANES)
 
 #NHANES mimics a random sample of US residents
@@ -104,8 +105,8 @@ set.seed(47)
 homes %>%
   mutate(HomeOwn_perm = sample(HomeOwn)) %>%
   group_by(MaritalStatus) %>%
-  summarize(prop_own = base::mean(HomeOwn == "Own"), 
-            prop_own_perm = base::mean(HomeOwn_perm == "Own")) %>%
+  summarize(prop_own = mean(HomeOwn == "Own"), 
+            prop_own_perm = mean(HomeOwn_perm == "Own")) %>%
   select(-MaritalStatus) %>%
   lapply(diff) # NeverMarried - Married
   
@@ -114,7 +115,8 @@ homes %>%
 *** =solution
 ```{r}
 # solution code
-suppressPackageStartupMessages(library(mosaic))
+library(dplyr)
+library(ggplot2)
 library(NHANES)
 
 homes <- NHANES %>%
@@ -126,8 +128,8 @@ set.seed(47)
 homes %>%
   mutate(HomeOwn_perm = sample(HomeOwn)) %>%
   group_by(MaritalStatus) %>%
-  summarize(prop_own = base::mean(HomeOwn == "Own"), 
-            prop_own_perm = base::mean(HomeOwn_perm == "Own")) %>%
+  summarize(prop_own = mean(HomeOwn == "Own"), 
+            prop_own_perm = mean(HomeOwn_perm == "Own")) %>%
   select(-MaritalStatus) %>%
   lapply(diff) # NeverMarried - Married
   
@@ -160,11 +162,11 @@ hint comes here
 # sample code
 
 set.seed(47)
-shuffdiff <- do(10)*homes %>%
+shuffdiff <- mosaic::do(10)*homes %>%
   mutate(HomeOwn_perm = sample(HomeOwn)) %>%
   group_by(MaritalStatus) %>%
-  summarize(prop_own = base::mean(HomeOwn == "Own"), 
-            prop_own_perm = base::mean(HomeOwn_perm == "Own")) %>%
+  summarize(prop_own = mean(HomeOwn == "Own"), 
+            prop_own_perm = mean(HomeOwn_perm == "Own")) %>%
   select(-MaritalStatus) %>%
   lapply(diff) # NeverMarried - Married
   
@@ -176,11 +178,11 @@ ggplot(shuffdiff, aes(x=prop_own_perm)) + geom_dotplot()
 ```{r}
 # solution code
 set.seed(47)
-shuffdiff <- do(10)*homes %>%
+shuffdiff <- mosaic::do(10)*homes %>%
   mutate(HomeOwn_perm = sample(HomeOwn)) %>%
   group_by(MaritalStatus) %>%
-  summarize(prop_own = base::mean(HomeOwn == "Own"), 
-            prop_own_perm = base::mean(HomeOwn_perm == "Own")) %>%
+  summarize(prop_own = mean(HomeOwn == "Own"), 
+            prop_own_perm = mean(HomeOwn_perm == "Own")) %>%
   select(-MaritalStatus) %>%
   lapply(diff) # NeverMarried - Married
   
@@ -215,11 +217,11 @@ hint comes here
 # sample code
 
 set.seed(47)
-shuffdiff <- do(1000)*homes %>%
+shuffdiff <- mosaic::do(1000)*homes %>%
   mutate(HomeOwn_perm = sample(HomeOwn)) %>%
   group_by(MaritalStatus) %>%
-  summarize(prop_own = base::mean(HomeOwn == "Own"), 
-            prop_own_perm = base::mean(HomeOwn_perm == "Own")) %>%
+  summarize(prop_own = mean(HomeOwn == "Own"), 
+            prop_own_perm = mean(HomeOwn_perm == "Own")) %>%
   select(-MaritalStatus) %>%
   lapply(diff) # NeverMarried - Married
   
@@ -232,11 +234,11 @@ ggplot(shuffdiff, aes(x=prop_own_perm)) + geom_density()
 # solution code
 
 set.seed(47)
-shuffdiff <- do(1000)*homes %>%
+shuffdiff <- mosaic::do(1000)*homes %>%
   mutate(HomeOwn_perm = sample(HomeOwn)) %>%
   group_by(MaritalStatus) %>%
-  summarize(prop_own = base::mean(HomeOwn == "Own"), 
-            prop_own_perm = base::mean(HomeOwn_perm == "Own")) %>%
+  summarize(prop_own = mean(HomeOwn == "Own"), 
+            prop_own_perm = mean(HomeOwn_perm == "Own")) %>%
   select(-MaritalStatus) %>%
   lapply(diff) # NeverMarried - Married
   
