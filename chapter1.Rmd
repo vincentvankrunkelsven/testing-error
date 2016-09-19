@@ -155,6 +155,16 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+library(dplyr)
+library(ggplot2)
+library(NHANES)
+
+#NHANES mimics a random sample of US residents
+
+homes <- NHANES %>%
+  select(MaritalStatus, HomeOwn) %>%
+  filter(MaritalStatus %in% c("Married", "NeverMarried")) %>%
+  filter(HomeOwn %in% c("Own", "Rent"))
 ```
 
 *** =sample_code
@@ -210,6 +220,16 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+library(dplyr)
+library(ggplot2)
+library(NHANES)
+
+#NHANES mimics a random sample of US residents
+
+homes <- NHANES %>%
+  select(MaritalStatus, HomeOwn) %>%
+  filter(MaritalStatus %in% c("Married", "NeverMarried")) %>%
+  filter(HomeOwn %in% c("Own", "Rent"))
 ```
 
 *** =sample_code
@@ -277,6 +297,27 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+library(dplyr)
+library(ggplot2)
+library(NHANES)
+
+#NHANES mimics a random sample of US residents
+
+homes <- NHANES %>%
+  select(MaritalStatus, HomeOwn) %>%
+  filter(MaritalStatus %in% c("Married", "NeverMarried")) %>%
+  filter(HomeOwn %in% c("Own", "Rent"))
+  
+set.seed(47)
+shuffdiff <- mosaic::do(1000)*homes %>%
+  mutate(HomeOwn_perm = sample(HomeOwn)) %>%
+  group_by(MaritalStatus) %>%
+  summarize(prop_own = mean(HomeOwn == "Own"), 
+            prop_own_perm = mean(HomeOwn_perm == "Own")) %>%
+  select(-MaritalStatus) %>%
+  lapply(diff) # NeverMarried - Married
+  
+  
 ```
 
 *** =sample_code
