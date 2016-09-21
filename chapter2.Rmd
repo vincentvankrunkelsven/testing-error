@@ -7,6 +7,32 @@ description : Now focusing on a specific example, the student will run the rando
 
 Introduction of the example and the scientific question.
 
+We consider a study investigating gender discrimination in the 1970s, which is set in the
+context of personnel decisions within a bank. The research question we hope to answer is,
+``Are females discriminated against in promotion decisions made by male managers?"
+
+(citation: Rosen B and Jerdee T. 1974. Influence of sex role stereotypes on personnel decisions. Journal of Applied Psychology 59(1):9-14.)
+
+
+The participants in this study were 48 male bank supervisors attending a management
+institute at the University of North Carolina in 1972. They were asked to assume the role
+of the personnel director of a bank and were given a personnel file to judge whether the
+person should be promoted to a branch manager position. The files given to the participants were identical, except that half of them indicated the candidate was male and the other half indicated the candidate was female. These files were randomly assigned to the subjects.
+
+In this study, a smaller proportion of females are promoted than males (0.583 versus 0.875), but it is unclear whether the difference provides convincing evidence that females are unfairly discriminated against.
+
+\begin{tabular}{lccr}
+\hline
+& promoted & not promoted & Total
+\hline
+male & 21 &3 & 24\\
+female & 14 & 10 & 24\\
+\hline
+Total & 35 & 13 & 48\\
+\hline
+\end{tabular}
+Table: Summary results for the gender discrimination study.
+
 *** =video_link
 //player.vimeo.com/video/154783078
 
@@ -41,6 +67,8 @@ test_mc(2, feedback_msgs = c('wrong', 'right', 'wrong')) # if 2 is the correct o
 
 Calculating summary statistics, prop(), perc()
 
+note that it's important to think about the denominator.  That is, percent of what?  Do we want to calclulate the percent of women who were promoted?  Or the percent of people who were promoted that are women?
+
 *** =instructions
 - instruction 1
 - instruction 2
@@ -51,16 +79,28 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+library(dplyr)
+GendDiscr <- data.frame(promote = c(rep('promoted',35),rep('not_promoted',13)),
+  sex = c(rep('male',21), rep('female',14), rep('male',3), rep('female',10)))
 ```
 
 *** =sample_code
 ```{r}
-# sample code
+
+GendDiscr %>%
+  group_by(sex) %>%
+  summarize(prop_prom = mean(promote == "promoted")) %>%
+  mutate(perc_prom = 100*prop_prom)
+
 ```
 
 *** =solution
 ```{r}
 # solution code
+GendDiscr %>%
+  group_by(sex) %>%
+  summarize(prop_prom = mean(promote == "promoted")) %>%
+  mutate(perc_prom = 100*prop_prom)
 ```
 
 *** =sct
@@ -83,16 +123,44 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+library(dplyr)
+
+GendDiscr %>%
+  mutate(promote_perm = sample(promote)) %>%
+  group_by(sex) %>%
+  summarize(prop_prom_perm = mean(promote_perm == "promoted")) 
 ```
 
 *** =sample_code
 ```{r}
 # sample code
+set.seed(47)
+shuffpromote <- mosaic::do(10000)*GendDiscr %>%
+  mutate(promote_perm = sample(promote)) %>%
+  group_by(sex) %>%
+  summarize(prop_prom = mean(promote == "promoted"),
+            prop_prom_perm = mean(promote_perm == "promoted")) %>%
+  select(-sex) %>%
+  sapply(diff) # Male - Female
+ 
+
+ggplot(shuffpromote, aes(x=prop_prom_perm)) + geom_histogram() +
+  geom_vline(aes(xintercept=prop_prom), col="red")
 ```
 
 *** =solution
 ```{r}
 # solution code
+
+set.seed(47)
+shuffpromote <- mosaic::do(10000)*GendDiscr %>%
+  mutate(promote_perm = sample(promote)) %>%
+  group_by(sex) %>%
+  summarize(prop_prom = mean(promote == "promoted"),
+            prop_prom_perm = mean(promote_perm == "promoted")) %>%
+  select(-sex) %>%
+  sapply(diff) # Male - Female
+
 ```
 
 *** =sct
@@ -149,16 +217,35 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+
+set.seed(47)
+shuffpromote <- mosaic::do(10000)*GendDiscr %>%
+  mutate(promote_perm = sample(promote)) %>%
+  group_by(sex) %>%
+  summarize(prop_prom = mean(promote == "promoted"),
+            prop_prom_perm = mean(promote_perm == "promoted")) %>%
+  select(-sex) %>%
+  sapply(diff) # Male - Female
+
 ```
 
 *** =sample_code
 ```{r}
 # sample code
+
+shuffpromote %>% summarise(q.9 = quantile(prop_prom_perm, p=0.9),
+                           q.95 = quantile(prop_prom_perm, p=0.95),
+                           q.99 = quantile(prop_prom_perm, p=0.99))
 ```
 
 *** =solution
 ```{r}
 # solution code
+
+shuffpromote %>% summarise(q.9 = quantile(prop_prom_perm, p=0.9),
+                           q.95 = quantile(prop_prom_perm, p=0.95),
+                           q.99 = quantile(prop_prom_perm, p=0.99))
+
 ```
 
 *** =sct
@@ -181,16 +268,33 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+set.seed(47)
+shuffpromote <- mosaic::do(10000)*GendDiscr %>%
+  mutate(promote_perm = sample(promote)) %>%
+  group_by(sex) %>%
+  summarize(prop_prom = mean(promote == "promoted"),
+            prop_prom_perm = mean(promote_perm == "promoted")) %>%
+  select(-sex) %>%
+  sapply(diff) # Male - Female
+
 ```
 
 *** =sample_code
 ```{r}
 # sample code
+
+shuffpromote %>% summarise(q.01 = quantile(prop_prom_perm, p=0.01),
+                           q.05 = quantile(prop_prom_perm, p=0.05),
+                           q.1 = quantile(prop_prom_perm, p=0.1))
 ```
 
 *** =solution
 ```{r}
 # solution code
+
+shuffpromote %>% summarise(q.01 = quantile(prop_prom_perm, p=0.01),
+                           q.05 = quantile(prop_prom_perm, p=0.05),
+                           q.1 = quantile(prop_prom_perm, p=0.1))
 ```
 
 *** =sct
@@ -237,6 +341,8 @@ test_mc(2, feedback_msgs = c('wrong', 'right', 'wrong')) # if 2 is the correct o
 
 Vary the sample size to calculate 4 different randomization distributions
 
+I know this is too long... but the code is all the same as before.  What do I do here??
+
 *** =instructions
 - instruction 1
 - instruction 2
@@ -247,16 +353,84 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+
+library(tidyr)
+GendDiscr.d3 <- data.frame(promote = c(rep('promoted',12),rep('not_promoted',4)),
+  sex = c(rep('male',7), rep('female',5), rep('male',1), rep('female',3)))
+
+# am I allowed to use tidyr::spread?  If not, any ideas on simple tabulation?
+GendDiscr.d3 %>% 
+  count(sex, promote) %>%
+  spread(promote, n)
+
+GendDiscr.m10 <- data.frame(promote = c(rep('promoted',350),rep('not_promoted',130)),
+  sex = c(rep('male',210), rep('female',140), rep('male',30), rep('female',100)))
+
+GendDiscr.m10 %>% 
+  count(sex, promote) %>%
+  spread(promote, n)
+
 ```
 
 *** =sample_code
 ```{r}
 # sample code
+
+
+set.seed(47)
+shuffpromote.d3 <- mosaic::do(10000)*GendDiscr.d3 %>%
+  mutate(promote_perm = sample(promote)) %>%
+  group_by(sex) %>%
+  summarize(prop_prom = mean(promote == "promoted"),
+            prop_prom_perm = mean(promote_perm == "promoted")) %>%
+  select(-sex) %>%
+  sapply(diff) # Male - Female
+
+ggplot(shuffpromote.d3, aes(x=prop_prom_perm)) + geom_histogram() +
+  geom_vline(aes(xintercept=prop_prom), col="red")
+
+set.seed(47)
+shuffpromote.m10 <- mosaic::do(10000)*GendDiscr.m10 %>%
+  mutate(promote_perm = sample(promote)) %>%
+  group_by(sex) %>%
+  summarize(prop_prom = mean(promote == "promoted"),
+            prop_prom_perm = mean(promote_perm == "promoted")) %>%
+  select(-sex) %>%
+  sapply(diff) # Male - Female
+
+ggplot(shuffpromote.m10, aes(x=prop_prom_perm)) + geom_histogram() +
+  geom_vline(aes(xintercept=prop_prom), col="red")
+
+
 ```
 
 *** =solution
 ```{r}
 # solution code
+set.seed(47)
+shuffpromote.d3 <- mosaic::do(10000)*GendDiscr.d3 %>%
+  mutate(promote_perm = sample(promote)) %>%
+  group_by(sex) %>%
+  summarize(prop_prom = mean(promote == "promoted"),
+            prop_prom_perm = mean(promote_perm == "promoted")) %>%
+  select(-sex) %>%
+  sapply(diff) # Male - Female
+
+ggplot(shuffpromote.d3, aes(x=prop_prom_perm)) + geom_histogram() +
+  geom_vline(aes(xintercept=prop_prom), col="red")
+
+set.seed(47)
+shuffpromote.m10 <- mosaic::do(10000)*GendDiscr.m10 %>%
+  mutate(promote_perm = sample(promote)) %>%
+  group_by(sex) %>%
+  summarize(prop_prom = mean(promote == "promoted"),
+            prop_prom_perm = mean(promote_perm == "promoted")) %>%
+  select(-sex) %>%
+  sapply(diff) # Male - Female
+
+ggplot(shuffpromote.m10, aes(x=prop_prom_perm)) + geom_histogram() +
+  geom_vline(aes(xintercept=prop_prom), col="red")
+
 ```
 
 *** =sct
@@ -284,11 +458,41 @@ hint comes here
 *** =sample_code
 ```{r}
 # sample code
+shuffpromote %>% summarise(q.9 = quantile(prop_prom_perm, p=0.9),
+                           q.95 = quantile(prop_prom_perm, p=0.95),
+                           q.99 = quantile(prop_prom_perm, p=0.99))
+
+
+shuffpromote.d3 %>% summarise(q.9 = quantile(prop_prom_perm, p=0.9),
+                           q.95 = quantile(prop_prom_perm, p=0.95),
+                           q.99 = quantile(prop_prom_perm, p=0.99))
+
+
+shuffpromote.m10 %>% summarise(q.9 = quantile(prop_prom_perm, p=0.9),
+                           q.95 = quantile(prop_prom_perm, p=0.95),
+                           q.99 = quantile(prop_prom_perm, p=0.99))
+
+
 ```
 
 *** =solution
 ```{r}
 # solution code
+
+shuffpromote %>% summarise(q.9 = quantile(prop_prom_perm, p=0.9),
+                           q.95 = quantile(prop_prom_perm, p=0.95),
+                           q.99 = quantile(prop_prom_perm, p=0.99))
+
+
+shuffpromote.d3 %>% summarise(q.9 = quantile(prop_prom_perm, p=0.9),
+                           q.95 = quantile(prop_prom_perm, p=0.95),
+                           q.99 = quantile(prop_prom_perm, p=0.99))
+
+
+shuffpromote.m10 %>% summarise(q.9 = quantile(prop_prom_perm, p=0.9),
+                           q.95 = quantile(prop_prom_perm, p=0.95),
+                           q.99 = quantile(prop_prom_perm, p=0.99))
+
 ```
 
 *** =sct
@@ -327,11 +531,30 @@ hint comes here
 *** =sample_code
 ```{r}
 # sample code
+
+shuffpromote %>%
+ dplyr::summarise(sum(prop_prom < prop_prom_perm) / n())
+
+shuffpromote.d3 %>%
+ dplyr::summarise(sum(prop_prom < prop_prom_perm) / n())
+
+shuffpromote.m10 %>%
+ dplyr::summarise(sum(prop_prom < prop_prom_perm) / n())
+
 ```
 
 *** =solution
 ```{r}
 # solution code
+shuffpromote %>%
+ dplyr::summarise(sum(prop_prom < prop_prom_perm) / n())
+
+shuffpromote.d3 %>%
+ dplyr::summarise(sum(prop_prom < prop_prom_perm) / n())
+
+shuffpromote.m10 %>%
+ dplyr::summarise(sum(prop_prom < prop_prom_perm) / n())
+
 ```
 
 *** =sct
@@ -344,6 +567,8 @@ success_msg("Great work!")
 
 calculate the p-value given a randomization distribution(s) (made up, different from gender data)
 
+the idea here is to think about what that distribution would look like with totally different data.
+
 *** =instructions
 - instruction 1
 - instruction 2
@@ -354,11 +579,46 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+library(tidyr)
+GendDiscr.new <- data.frame(promote = c(rep('promoted',35),rep('not_promoted',13)),
+  sex = c(rep('male',28), rep('female',7), rep('male',10), rep('female',3)))
+
+GendDiscr.new %>% 
+  count(sex, promote) %>%
+  spread(promote, n)
+
+GendDiscr.new %>%
+  group_by(sex) %>%
+  summarize(prop_prom = mean(promote == "promoted")) 
+
+set.seed(47)
+shuffpromote.new <- mosaic::do(10000)*GendDiscr.new %>%
+  mutate(promote_perm = sample(promote)) %>%
+  group_by(sex) %>%
+  summarize(prop_prom = mean(promote == "promoted"),
+            prop_prom_perm = mean(promote_perm == "promoted")) %>%
+  select(-sex) %>%
+  sapply(diff) # Male - Female
+
+
 ```
 
 *** =sample_code
 ```{r}
 # sample code
+
+ggplot(shuffpromote, aes(x=prop_prom_perm)) + geom_histogram() +
+  geom_vline(aes(xintercept=prop_prom), col="red")
+
+ggplot(shuffpromote.new, aes(x=prop_prom_perm)) + geom_histogram() +
+  geom_vline(aes(xintercept=prop_prom), col="red")
+
+shuffpromote %>%
+ dplyr::summarise(sum(prop_prom < prop_prom_perm) / n())
+
+shuffpromote.new %>%
+ dplyr::summarise(sum(prop_prom < prop_prom_perm) / n())
+
 ```
 
 *** =solution
@@ -374,7 +634,7 @@ success_msg("Great work!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:6e75cbd833
 ## Calculating two-sided p-values
 
-calculate a two-sided p-value given a randomization distribution(s) (made up, different from gender data)
+calculate a two-sided p-value given a randomization distribution(s) (differential promotion rates)
 
 *** =instructions
 - instruction 1
@@ -391,11 +651,16 @@ hint comes here
 *** =sample_code
 ```{r}
 # sample code
+shuffpromote %>%
+ dplyr::summarise(2*sum(prop_prom < prop_prom_perm) / n())
 ```
 
 *** =solution
 ```{r}
 # solution code
+shuffpromote %>%
+ dplyr::summarise(2*sum(prop_prom < prop_prom_perm) / n())
+
 ```
 
 *** =sct

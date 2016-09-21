@@ -108,7 +108,7 @@ homes %>%
   summarize(prop_own = mean(HomeOwn == "Own"), 
             prop_own_perm = mean(HomeOwn_perm == "Own")) %>%
   select(-MaritalStatus) %>%
-  lapply(diff) # NeverMarried - Married
+  sapply(diff) # NeverMarried - Married
   
 ```
 
@@ -131,7 +131,7 @@ homes %>%
   summarize(prop_own = mean(HomeOwn == "Own"), 
             prop_own_perm = mean(HomeOwn_perm == "Own")) %>%
   select(-MaritalStatus) %>%
-  lapply(diff) # NeverMarried - Married
+  sapply(diff) # NeverMarried - Married
   
 ```
 
@@ -178,7 +178,7 @@ shuffdiff <- mosaic::do(10)*homes %>%
   summarize(prop_own = mean(HomeOwn == "Own"), 
             prop_own_perm = mean(HomeOwn_perm == "Own")) %>%
   select(-MaritalStatus) %>%
-  lapply(diff) # NeverMarried - Married
+  sapply(diff) # NeverMarried - Married
   
 ggplot(shuffdiff, aes(x=prop_own_perm)) + geom_dotplot()
 
@@ -194,7 +194,7 @@ shuffdiff <- mosaic::do(10)*homes %>%
   summarize(prop_own = mean(HomeOwn == "Own"), 
             prop_own_perm = mean(HomeOwn_perm == "Own")) %>%
   select(-MaritalStatus) %>%
-  lapply(diff) # NeverMarried - Married
+  sapply(diff) # NeverMarried - Married
   
 ggplot(shuffdiff, aes(x=prop_own_perm)) + geom_dotplot()
 
@@ -243,9 +243,8 @@ shuffdiff <- mosaic::do(1000)*homes %>%
   summarize(prop_own = mean(HomeOwn == "Own"), 
             prop_own_perm = mean(HomeOwn_perm == "Own")) %>%
   select(-MaritalStatus) %>%
-  lapply(diff) # NeverMarried - Married
-  
-  
+  sapply(diff) # NeverMarried - Married
+
 ggplot(shuffdiff, aes(x=prop_own_perm)) + geom_density()  
 ```
 
@@ -260,9 +259,8 @@ shuffdiff <- mosaic::do(1000)*homes %>%
   summarize(prop_own = mean(HomeOwn == "Own"), 
             prop_own_perm = mean(HomeOwn_perm == "Own")) %>%
   select(-MaritalStatus) %>%
-  lapply(diff) # NeverMarried - Married
-  
-  
+  sapply(diff) # NeverMarried - Married
+
 ggplot(shuffdiff, aes(x=prop_own_perm)) + geom_density()  
 ```
 
@@ -315,15 +313,15 @@ shuffdiff <- mosaic::do(1000)*homes %>%
   summarize(prop_own = mean(HomeOwn == "Own"), 
             prop_own_perm = mean(HomeOwn_perm == "Own")) %>%
   select(-MaritalStatus) %>%
-  lapply(diff) # NeverMarried - Married
-  
+  sapply(diff) # NeverMarried - Married
   
 ```
 
 *** =sample_code
 ```{r}
 # sample code
-ggplot(shuffdiff, aes(x=prop_own_perm)) + geom_density() + geom_vline(aes(xintercept=prop_own), col="red")
+ggplot(shuffdiff, aes(x=prop_own_perm)) + geom_density() +
+  geom_vline(aes(xintercept=prop_own), col="red")
  
 shuffdiff %>%
  dplyr::summarise(sum(prop_own > prop_own_perm) / n())
@@ -333,7 +331,8 @@ shuffdiff %>%
 ```{r}
 # solution code
 
-ggplot(shuffdiff, aes(x=prop_own_perm)) + geom_density() + geom_vline(aes(xintercept=prop_own), col="red")
+ggplot(shuffdiff, aes(x=prop_own_perm)) + geom_density() +
+  geom_vline(aes(xintercept=prop_own), col="red")
  
 shuffdiff %>%
  dplyr::summarise(sum(prop_own > prop_own_perm) / n())
