@@ -277,6 +277,8 @@ shuffpromote <- mosaic::do(10000)*GendDiscr %>%
   select(-sex) %>%
   sapply(diff) # Male - Female
 
+shuffpromote %>%
+ dplyr::summarise(sum(prop_prom < prop_prom_perm) / n())
 ```
 
 *** =sample_code
