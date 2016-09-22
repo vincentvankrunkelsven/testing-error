@@ -80,27 +80,27 @@ hint comes here
 ```{r}
 # pec
 library(dplyr)
-GendDiscr <- data.frame(promote = c(rep('promoted',35),rep('not_promoted',13)),
+discrimination <- data.frame(promote = c(rep('promoted',35),rep('not_promoted',13)),
   sex = c(rep('male',21), rep('female',14), rep('male',3), rep('female',10)))
 ```
 
 *** =sample_code
 ```{r}
 
-GendDiscr %>%
+discrimination %>%
   group_by(sex) %>%
-  summarize(prop_prom = mean(promote == "promoted")) %>%
-  mutate(perc_prom = 100*prop_prom)
+  summarize(promoted_prop = mean(promote == "promoted")) %>%
+  mutate(promoted_perc = 100*promoted_prop)
 
 ```
 
 *** =solution
 ```{r}
 # solution code
-GendDiscr %>%
+discrimination %>%
   group_by(sex) %>%
-  summarize(prop_prom = mean(promote == "promoted")) %>%
-  mutate(perc_prom = 100*prop_prom)
+  summarize(promoted_prop = mean(promote == "promoted")) %>%
+  mutate(promoted_perc = 100*promoted_prop)
 ```
 
 *** =sct
@@ -125,27 +125,28 @@ hint comes here
 # pec
 library(dplyr)
 
-GendDiscr %>%
+discrimination %>%
   mutate(promote_perm = sample(promote)) %>%
   group_by(sex) %>%
-  summarize(prop_prom_perm = mean(promote_perm == "promoted")) 
+  summarize(promoted_prop_perm = mean(promote_perm == "promoted")) 
 ```
 
 *** =sample_code
 ```{r}
 # sample code
 set.seed(47)
-shuffpromote <- mosaic::do(10000)*GendDiscr %>%
+discrimination_permute <- mosaic::do(10000)*discrimination %>%
   mutate(promote_perm = sample(promote)) %>%
   group_by(sex) %>%
-  summarize(prop_prom = mean(promote == "promoted"),
-            prop_prom_perm = mean(promote_perm == "promoted")) %>%
+  summarize(promoted_prop = mean(promote == "promoted"),
+            promoted_prop_perm = mean(promote_perm == "promoted")) %>%
   select(-sex) %>%
   sapply(diff) # Male - Female
  
 
-ggplot(shuffpromote, aes(x=prop_prom_perm)) + geom_histogram() +
-  geom_vline(aes(xintercept=prop_prom), col="red")
+ggplot(discrimination_permute, aes(x=promoted_prop_perm)) + geom_histogram(binwidth=.01) +
+  geom_vline(aes(xintercept=promoted_prop), col="red")
+
 ```
 
 *** =solution
@@ -153,13 +154,16 @@ ggplot(shuffpromote, aes(x=prop_prom_perm)) + geom_histogram() +
 # solution code
 
 set.seed(47)
-shuffpromote <- mosaic::do(10000)*GendDiscr %>%
+discrimination_permute <- mosaic::do(10000)*discrimination %>%
   mutate(promote_perm = sample(promote)) %>%
   group_by(sex) %>%
-  summarize(prop_prom = mean(promote == "promoted"),
-            prop_prom_perm = mean(promote_perm == "promoted")) %>%
+  summarize(promoted_prop = mean(promote == "promoted"),
+            promoted_prop_perm = mean(promote_perm == "promoted")) %>%
   select(-sex) %>%
   sapply(diff) # Male - Female
+
+ggplot(discrimination_permute, aes(x=promoted_prop_perm)) + geom_histogram(binwidth=.01) +
+  geom_vline(aes(xintercept=promoted_prop), col="red")
 
 ```
 
@@ -219,11 +223,11 @@ hint comes here
 # pec
 
 set.seed(47)
-shuffpromote <- mosaic::do(10000)*GendDiscr %>%
+discrimination_permute <- mosaic::do(10000)*discrimination %>%
   mutate(promote_perm = sample(promote)) %>%
   group_by(sex) %>%
-  summarize(prop_prom = mean(promote == "promoted"),
-            prop_prom_perm = mean(promote_perm == "promoted")) %>%
+  summarize(promoted_prop = mean(promote == "promoted"),
+            promoted_prop_perm = mean(promote_perm == "promoted")) %>%
   select(-sex) %>%
   sapply(diff) # Male - Female
 
@@ -233,18 +237,18 @@ shuffpromote <- mosaic::do(10000)*GendDiscr %>%
 ```{r}
 # sample code
 
-shuffpromote %>% summarise(q.9 = quantile(prop_prom_perm, p=0.9),
-                           q.95 = quantile(prop_prom_perm, p=0.95),
-                           q.99 = quantile(prop_prom_perm, p=0.99))
+discrimination_permute %>% summarise(q.9 = quantile(promoted_prop_perm, p=0.9),
+                           q.95 = quantile(promoted_prop_perm, p=0.95),
+                           q.99 = quantile(promoted_prop_perm, p=0.99))
 ```
 
 *** =solution
 ```{r}
 # solution code
 
-shuffpromote %>% summarise(q.9 = quantile(prop_prom_perm, p=0.9),
-                           q.95 = quantile(prop_prom_perm, p=0.95),
-                           q.99 = quantile(prop_prom_perm, p=0.99))
+discrimination_permute %>% summarise(q.9 = quantile(promoted_prop_perm, p=0.9),
+                           q.95 = quantile(promoted_prop_perm, p=0.95),
+                           q.99 = quantile(promoted_prop_perm, p=0.99))
 
 ```
 
@@ -269,11 +273,11 @@ hint comes here
 ```{r}
 # pec
 set.seed(47)
-shuffpromote <- mosaic::do(10000)*GendDiscr %>%
+discrimination_permute <- mosaic::do(10000)*discrimination %>%
   mutate(promote_perm = sample(promote)) %>%
   group_by(sex) %>%
-  summarize(prop_prom = mean(promote == "promoted"),
-            prop_prom_perm = mean(promote_perm == "promoted")) %>%
+  summarize(promoted_prop = mean(promote == "promoted"),
+            promoted_prop_perm = mean(promote_perm == "promoted")) %>%
   select(-sex) %>%
   sapply(diff) # Male - Female
 
@@ -283,18 +287,18 @@ shuffpromote <- mosaic::do(10000)*GendDiscr %>%
 ```{r}
 # sample code
 
-shuffpromote %>% summarise(q.01 = quantile(prop_prom_perm, p=0.01),
-                           q.05 = quantile(prop_prom_perm, p=0.05),
-                           q.1 = quantile(prop_prom_perm, p=0.1))
+discrimination_permute %>% summarise(q.01 = quantile(promoted_prop_perm, p=0.01),
+                           q.05 = quantile(promoted_prop_perm, p=0.05),
+                           q.1 = quantile(promoted_prop_perm, p=0.1))
 ```
 
 *** =solution
 ```{r}
 # solution code
 
-shuffpromote %>% summarise(q.01 = quantile(prop_prom_perm, p=0.01),
-                           q.05 = quantile(prop_prom_perm, p=0.05),
-                           q.1 = quantile(prop_prom_perm, p=0.1))
+discrimination_permute %>% summarise(q.01 = quantile(promoted_prop_perm, p=0.01),
+                           q.05 = quantile(promoted_prop_perm, p=0.05),
+                           q.1 = quantile(promoted_prop_perm, p=0.1))
 ```
 
 *** =sct
@@ -355,18 +359,18 @@ hint comes here
 # pec
 
 library(tidyr)
-GendDiscr.d3 <- data.frame(promote = c(rep('promoted',12),rep('not_promoted',4)),
+discrimination_d3 <- data.frame(promote = c(rep('promoted',12),rep('not_promoted',4)),
   sex = c(rep('male',7), rep('female',5), rep('male',1), rep('female',3)))
 
 # am I allowed to use tidyr::spread?  If not, any ideas on simple tabulation?
-GendDiscr.d3 %>% 
+discrimination_d3 %>% 
   count(sex, promote) %>%
   spread(promote, n)
 
-GendDiscr.m10 <- data.frame(promote = c(rep('promoted',350),rep('not_promoted',130)),
+discrimination_m10 <- data.frame(promote = c(rep('promoted',350),rep('not_promoted',130)),
   sex = c(rep('male',210), rep('female',140), rep('male',30), rep('female',100)))
 
-GendDiscr.m10 %>% 
+discrimination_m10 %>% 
   count(sex, promote) %>%
   spread(promote, n)
 
@@ -378,28 +382,28 @@ GendDiscr.m10 %>%
 
 
 set.seed(47)
-shuffpromote.d3 <- mosaic::do(10000)*GendDiscr.d3 %>%
+discrimination_permute_d3 <- mosaic::do(10000)*discrimination_d3 %>%
   mutate(promote_perm = sample(promote)) %>%
   group_by(sex) %>%
-  summarize(prop_prom = mean(promote == "promoted"),
-            prop_prom_perm = mean(promote_perm == "promoted")) %>%
+  summarize(promoted_prop = mean(promote == "promoted"),
+            promoted_prop_perm = mean(promote_perm == "promoted")) %>%
   select(-sex) %>%
   sapply(diff) # Male - Female
 
-ggplot(shuffpromote.d3, aes(x=prop_prom_perm)) + geom_histogram() +
-  geom_vline(aes(xintercept=prop_prom), col="red")
+ggplot(discrimination_permute_d3, aes(x=promoted_prop_perm)) + geom_histogram(binwidth = 0.01) +
+  geom_vline(aes(xintercept=promoted_prop), col="red")
 
 set.seed(47)
-shuffpromote.m10 <- mosaic::do(10000)*GendDiscr.m10 %>%
+discrimination_permute_m10 <- mosaic::do(10000)*discrimination_m10 %>%
   mutate(promote_perm = sample(promote)) %>%
   group_by(sex) %>%
-  summarize(prop_prom = mean(promote == "promoted"),
-            prop_prom_perm = mean(promote_perm == "promoted")) %>%
+  summarize(promoted_prop = mean(promote == "promoted"),
+            promoted_prop_perm = mean(promote_perm == "promoted")) %>%
   select(-sex) %>%
   sapply(diff) # Male - Female
 
-ggplot(shuffpromote.m10, aes(x=prop_prom_perm)) + geom_histogram() +
-  geom_vline(aes(xintercept=prop_prom), col="red")
+ggplot(discrimination_permute_m10, aes(x=promoted_prop_perm)) + geom_histogram(binwidth = 0.01) +
+  geom_vline(aes(xintercept=promoted_prop), col="red")
 
 
 ```
@@ -408,28 +412,29 @@ ggplot(shuffpromote.m10, aes(x=prop_prom_perm)) + geom_histogram() +
 ```{r}
 # solution code
 set.seed(47)
-shuffpromote.d3 <- mosaic::do(10000)*GendDiscr.d3 %>%
+discrimination_permute_d3 <- mosaic::do(10000)*discrimination_d3 %>%
   mutate(promote_perm = sample(promote)) %>%
   group_by(sex) %>%
-  summarize(prop_prom = mean(promote == "promoted"),
-            prop_prom_perm = mean(promote_perm == "promoted")) %>%
+  summarize(promoted_prop = mean(promote == "promoted"),
+            promoted_prop_perm = mean(promote_perm == "promoted")) %>%
   select(-sex) %>%
   sapply(diff) # Male - Female
 
-ggplot(shuffpromote.d3, aes(x=prop_prom_perm)) + geom_histogram() +
-  geom_vline(aes(xintercept=prop_prom), col="red")
+ggplot(discrimination_permute_d3, aes(x=promoted_prop_perm)) + geom_histogram(binwidth = 0.01) +
+  geom_vline(aes(xintercept=promoted_prop), col="red")
 
 set.seed(47)
-shuffpromote.m10 <- mosaic::do(10000)*GendDiscr.m10 %>%
+discrimination_permute_m10 <- mosaic::do(10000)*discrimination_m10 %>%
   mutate(promote_perm = sample(promote)) %>%
   group_by(sex) %>%
-  summarize(prop_prom = mean(promote == "promoted"),
-            prop_prom_perm = mean(promote_perm == "promoted")) %>%
+  summarize(promoted_prop = mean(promote == "promoted"),
+            promoted_prop_perm = mean(promote_perm == "promoted")) %>%
   select(-sex) %>%
   sapply(diff) # Male - Female
 
-ggplot(shuffpromote.m10, aes(x=prop_prom_perm)) + geom_histogram() +
-  geom_vline(aes(xintercept=prop_prom), col="red")
+ggplot(discrimination_permute_m10, aes(x=promoted_prop_perm)) + geom_histogram(binwidth = 0.01) +
+  geom_vline(aes(xintercept=promoted_prop), col="red")
+
 
 ```
 
@@ -458,19 +463,19 @@ hint comes here
 *** =sample_code
 ```{r}
 # sample code
-shuffpromote %>% summarise(q.9 = quantile(prop_prom_perm, p=0.9),
-                           q.95 = quantile(prop_prom_perm, p=0.95),
-                           q.99 = quantile(prop_prom_perm, p=0.99))
+discrimination_permute %>% summarise(q.9 = quantile(promoted_prop_perm, p=0.9),
+                           q.95 = quantile(promoted_prop_perm, p=0.95),
+                           q.99 = quantile(promoted_prop_perm, p=0.99))
 
 
-shuffpromote.d3 %>% summarise(q.9 = quantile(prop_prom_perm, p=0.9),
-                           q.95 = quantile(prop_prom_perm, p=0.95),
-                           q.99 = quantile(prop_prom_perm, p=0.99))
+discrimination_permute_d3 %>% summarise(q.9 = quantile(promoted_prop_perm, p=0.9),
+                           q.95 = quantile(promoted_prop_perm, p=0.95),
+                           q.99 = quantile(promoted_prop_perm, p=0.99))
 
 
-shuffpromote.m10 %>% summarise(q.9 = quantile(prop_prom_perm, p=0.9),
-                           q.95 = quantile(prop_prom_perm, p=0.95),
-                           q.99 = quantile(prop_prom_perm, p=0.99))
+discrimination_permute_m10 %>% summarise(q.9 = quantile(promoted_prop_perm, p=0.9),
+                           q.95 = quantile(promoted_prop_perm, p=0.95),
+                           q.99 = quantile(promoted_prop_perm, p=0.99))
 
 
 ```
@@ -479,19 +484,19 @@ shuffpromote.m10 %>% summarise(q.9 = quantile(prop_prom_perm, p=0.9),
 ```{r}
 # solution code
 
-shuffpromote %>% summarise(q.9 = quantile(prop_prom_perm, p=0.9),
-                           q.95 = quantile(prop_prom_perm, p=0.95),
-                           q.99 = quantile(prop_prom_perm, p=0.99))
+discrimination_permute %>% summarise(q.9 = quantile(promoted_prop_perm, p=0.9),
+                           q.95 = quantile(promoted_prop_perm, p=0.95),
+                           q.99 = quantile(promoted_prop_perm, p=0.99))
 
 
-shuffpromote.d3 %>% summarise(q.9 = quantile(prop_prom_perm, p=0.9),
-                           q.95 = quantile(prop_prom_perm, p=0.95),
-                           q.99 = quantile(prop_prom_perm, p=0.99))
+discrimination_permute_d3 %>% summarise(q.9 = quantile(promoted_prop_perm, p=0.9),
+                           q.95 = quantile(promoted_prop_perm, p=0.95),
+                           q.99 = quantile(promoted_prop_perm, p=0.99))
 
 
-shuffpromote.m10 %>% summarise(q.9 = quantile(prop_prom_perm, p=0.9),
-                           q.95 = quantile(prop_prom_perm, p=0.95),
-                           q.99 = quantile(prop_prom_perm, p=0.99))
+discrimination_permute_m10 %>% summarise(q.9 = quantile(promoted_prop_perm, p=0.9),
+                           q.95 = quantile(promoted_prop_perm, p=0.95),
+                           q.99 = quantile(promoted_prop_perm, p=0.99))
 
 ```
 
@@ -532,28 +537,28 @@ hint comes here
 ```{r}
 # sample code
 
-shuffpromote %>%
- dplyr::summarise(sum(prop_prom < prop_prom_perm) / n())
+discrimination_permute %>%
+ dplyr::summarise(sum(promoted_prop < promoted_prop_perm) / n())
 
-shuffpromote.d3 %>%
- dplyr::summarise(sum(prop_prom < prop_prom_perm) / n())
+discrimination_permute_d3 %>%
+ dplyr::summarise(sum(promoted_prop < promoted_prop_perm) / n())
 
-shuffpromote.m10 %>%
- dplyr::summarise(sum(prop_prom < prop_prom_perm) / n())
+discrimination_permute_m10 %>%
+ dplyr::summarise(sum(promoted_prop < promoted_prop_perm) / n())
 
 ```
 
 *** =solution
 ```{r}
 # solution code
-shuffpromote %>%
- dplyr::summarise(sum(prop_prom < prop_prom_perm) / n())
+discrimination_permute %>%
+ dplyr::summarise(sum(promoted_prop < promoted_prop_perm) / n())
 
-shuffpromote.d3 %>%
- dplyr::summarise(sum(prop_prom < prop_prom_perm) / n())
+discrimination_permute_d3 %>%
+ dplyr::summarise(sum(promoted_prop < promoted_prop_perm) / n())
 
-shuffpromote.m10 %>%
- dplyr::summarise(sum(prop_prom < prop_prom_perm) / n())
+discrimination_permute_m10 %>%
+ dplyr::summarise(sum(promoted_prop < promoted_prop_perm) / n())
 
 ```
 
@@ -580,23 +585,23 @@ hint comes here
 ```{r}
 # pec
 library(tidyr)
-GendDiscr.new <- data.frame(promote = c(rep('promoted',35),rep('not_promoted',13)),
+discrimination_new <- data.frame(promote = c(rep('promoted',35),rep('not_promoted',13)),
   sex = c(rep('male',28), rep('female',7), rep('male',10), rep('female',3)))
 
-GendDiscr.new %>% 
+discrimination_new %>% 
   count(sex, promote) %>%
   spread(promote, n)
 
-GendDiscr.new %>%
+discrimination_new %>%
   group_by(sex) %>%
-  summarize(prop_prom = mean(promote == "promoted")) 
+  summarize(promoted_prop = mean(promote == "promoted")) 
 
 set.seed(47)
-shuffpromote.new <- mosaic::do(10000)*GendDiscr.new %>%
+discrimination_permute_new <- mosaic::do(10000)*discrimination_new %>%
   mutate(promote_perm = sample(promote)) %>%
   group_by(sex) %>%
-  summarize(prop_prom = mean(promote == "promoted"),
-            prop_prom_perm = mean(promote_perm == "promoted")) %>%
+  summarize(promoted_prop = mean(promote == "promoted"),
+            promoted_prop_perm = mean(promote_perm == "promoted")) %>%
   select(-sex) %>%
   sapply(diff) # Male - Female
 
@@ -607,17 +612,17 @@ shuffpromote.new <- mosaic::do(10000)*GendDiscr.new %>%
 ```{r}
 # sample code
 
-ggplot(shuffpromote, aes(x=prop_prom_perm)) + geom_histogram() +
-  geom_vline(aes(xintercept=prop_prom), col="red")
+ggplot(discrimination_permute, aes(x=promoted_prop_perm)) + geom_histogram() +
+  geom_vline(aes(xintercept=promoted_prop), col="red")
 
-ggplot(shuffpromote.new, aes(x=prop_prom_perm)) + geom_histogram() +
-  geom_vline(aes(xintercept=prop_prom), col="red")
+ggplot(discrimination_permute_new, aes(x=promoted_prop_perm)) + geom_histogram() +
+  geom_vline(aes(xintercept=promoted_prop), col="red")
 
-shuffpromote %>%
- dplyr::summarise(sum(prop_prom < prop_prom_perm) / n())
+discrimination_permute %>%
+ dplyr::summarise(sum(promoted_prop < promoted_prop_perm) / n())
 
-shuffpromote.new %>%
- dplyr::summarise(sum(prop_prom < prop_prom_perm) / n())
+discrimination_permute_new %>%
+ dplyr::summarise(sum(promoted_prop < promoted_prop_perm) / n())
 
 ```
 
@@ -651,15 +656,15 @@ hint comes here
 *** =sample_code
 ```{r}
 # sample code
-shuffpromote %>%
- dplyr::summarise(2*sum(prop_prom < prop_prom_perm) / n())
+discrimination_permute %>%
+ dplyr::summarise(2*sum(promoted_prop < promoted_prop_perm) / n())
 ```
 
 *** =solution
 ```{r}
 # solution code
-shuffpromote %>%
- dplyr::summarise(2*sum(prop_prom < prop_prom_perm) / n())
+discrimination_permute %>%
+ dplyr::summarise(2*sum(promoted_prop < promoted_prop_perm) / n())
 
 ```
 

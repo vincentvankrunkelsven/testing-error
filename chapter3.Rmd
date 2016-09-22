@@ -7,6 +7,60 @@ description : We will continue with a new example and the same structure of crea
 
 Introduction to the example, layout of the data, research question, tactile simulation via cards (?)
 
+
+How rational and consistent is the behavior of the typical American college student? In this section, we'll explore whether college student consumers always consider an obvious fact: money not spent now can be spent later.
+
+In particular, we are interested in whether reminding students about this well-known
+fact about money causes them to be a little thriftier. A skeptic might think that such a
+reminder would have no impact. We can summarize these two perspectives using the null
+and alternative hypothesis framework.
+
+H0: Null hypothesis. Reminding students that they can save money for later purchases
+will not have any impact on students' spending decisions.
+
+HA: Alternative hypothesis. Reminding students that they can save money for later
+purchases will reduce the chance they will continue with a purchase.
+
+In this section, we'll explore an experiment conducted by researchers that investigates this very question for students at a university in the southwestern United States.
+
+Frederick S, Novemsky N, Wang J, Dhar R, Nowlis S. 2009. Opportunity Cost Neglect. Journal of Consumer Research 36: 553-561.
+
+One-hundred and fifty students were recruited for the study, and each was given the fol-
+lowing statement:
+
+Imagine that you have been saving some extra money on the side to make some
+purchases, and on your most recent visit to the video store you come across a
+special sale on a new video. This video is one with your favorite actor or actress,
+and your favorite type of movie (such as a comedy, drama, thriller, etc.). This
+particular video that you are considering is one you have been thinking about
+buying for a long time. It is available for a special sale price of $14.99.
+What would you do in this situation? Please circle one of the options below.
+
+Half of the 150 students were randomized into a control group and were given the following
+two options:
+(A) Buy this entertaining video.
+(B) Not buy this entertaining video.
+
+The remaining 75 students were placed in the treatment group, and they saw a slightly
+modified option (B):
+(A) Buy this entertaining video.
+(B) Not buy this entertaining video. Keep the $14.99 for other purchases.
+
+Would the extra statement reminding students of an obvious fact impact the purchasing
+decision? Table 2.4 summarizes the study results.
+
+\begin{tabular}{lccr}
+\hline
+& buy DVD & not buy DVD & Total\\
+\hline
+control group & 56& 19 &75\\
+treatment group& 41 &34 &75\\
+\hline
+Total & 97 & 53 & 150\\
+\hline
+\end{tabular}
+Table: Summary of student choices in the opportunity cost study.
+
 *** =video_link
 //player.vimeo.com/video/154783078
 
@@ -16,7 +70,7 @@ Introduction to the example, layout of the data, research question, tactile simu
 --- type:NormalExercise lang:r xp:100 skills:1 key:2a037c969d
 ## Summarizing opportunity cost (1)
 
-Calculating summary statistics, prop(), perc()
+Calculating summary statistics
 
 *** =instructions
 - instruction 1
@@ -28,16 +82,29 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+library(dplyr)
+opportunity <- data.frame(decision = c(rep('buyDVD',97),rep('nobuyDVD',53)),
+  group = c(rep('control',56), rep('treatment',41), rep('control',19), rep('treatment',34)))
 ```
 
 *** =sample_code
 ```{r}
 # sample code
+opportunity %>%
+  group_by(group) %>%
+  summarize(buy_prop = mean(decision == "buyDVD")) %>%
+  mutate(buy_perc = 100*buy_prop)
+
 ```
 
 *** =solution
 ```{r}
 # solution code
+opportunity %>%
+  group_by(group) %>%
+  summarize(buy_prop = mean(decision == "buyDVD")) %>%
+  mutate(buy_perc = 100*buy_prop)
+
 ```
 
 *** =sct
@@ -65,11 +132,17 @@ hint comes here
 *** =sample_code
 ```{r}
 # sample code
+
+#can't figure out an easy way to put relative frequency (instead of count) on the y-axis
+ggplot(opportunity, aes(x=decision, fill=group)) + geom_bar()
+
 ```
 
 *** =solution
 ```{r}
 # solution code
+
+ggplot(opportunity, aes(x=decision, fill=group)) + geom_bar()
 ```
 
 *** =sct
@@ -97,11 +170,37 @@ hint comes here
 *** =sample_code
 ```{r}
 # sample code
+set.seed(47)
+opportunity_permute <- mosaic::do(10000)*opportunity %>%
+  mutate(decision_perm = sample(decision)) %>%
+  group_by(group) %>%
+  summarize(buy_prop = mean(decision == "buyDVD"),
+            buy_prop_perm = mean(decision_perm == "buyDVD")) %>%
+  select(-group) %>%
+  sapply(diff) # treatment - control
+ 
+
+ggplot(opportunity_permute, aes(x=buy_prop_perm)) + geom_histogram(binwidth = .01) +
+  geom_vline(aes(xintercept=buy_prop), col="red")
+
 ```
 
 *** =solution
 ```{r}
 # solution code
+set.seed(47)
+opportunity_permute <- mosaic::do(10000)*opportunity %>%
+  mutate(decision_perm = sample(decision)) %>%
+  group_by(group) %>%
+  summarize(buy_prop = mean(decision == "buyDVD"),
+            buy_prop_perm = mean(decision_perm == "buyDVD")) %>%
+  select(-group) %>%
+  sapply(diff) # treatment - control
+ 
+
+ggplot(opportunity_permute, aes(x=buy_prop_perm)) + geom_histogram(binwidth = .01) +
+  geom_vline(aes(xintercept=buy_prop), col="red")
+
 ```
 
 *** =sct
@@ -129,11 +228,18 @@ hint comes here
 *** =sample_code
 ```{r}
 # sample code
+
+opportunity_permute %>%
+ dplyr::summarise(sum(buy_prop > buy_prop_perm) / n())
+
 ```
 
 *** =solution
 ```{r}
 # solution code
+opportunity_permute %>%
+ dplyr::summarise(sum(buy_prop > buy_prop_perm) / n())
+
 ```
 
 *** =sct
@@ -241,11 +347,19 @@ hint comes here
 *** =sample_code
 ```{r}
 # sample code
+
+opportunity_permute %>%
+ dplyr::summarise(2*sum(buy_prop > buy_prop_perm) / n())
+
 ```
 
 *** =solution
 ```{r}
 # solution code
+
+opportunity_permute %>%
+ dplyr::summarise(2*sum(buy_prop > buy_prop_perm) / n())
+
 ```
 
 *** =sct
@@ -269,6 +383,10 @@ Discussion / simulation on why we need to set the hypotheses first
 
 Have them simulate data with snooping to see that their type I error rate doubles if testing two sided
 
+Be honest with yourself:  will you look at big differences in the positive *and* negative directions?  If so, How big will your error rates be?  
+
+Type I error is based on the null hypothesis being true (that is, our shuffled distribution being representative of the population).  If we consider both sides, then we naturally consider twice as many ``unusual'' situations as if we consider only one side of the null sampling distribution.  
+
 *** =instructions
 - instruction 1
 - instruction 2
@@ -284,6 +402,20 @@ hint comes here
 *** =sample_code
 ```{r}
 # sample code
+
+opportunity_permute %>% 
+  summarise(q.01 = quantile(buy_prop_perm, p = 0.01),
+            q.99 = quantile(buy_prop_perm, p = 0.99))
+
+opportunity_permute %>%
+ dplyr::summarise(sum(-0.17333 > buy_prop_perm) / n())
+
+opportunity_permute %>%
+ dplyr::summarise(sum(0.17333 < buy_prop_perm) / n())
+
+opportunity_permute %>%
+ dplyr::summarise( (sum(-0.17333 > buy_prop_perm) + sum(0.17333< buy_prop_perm)) / n())
+
 ```
 
 *** =solution
