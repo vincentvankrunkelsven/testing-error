@@ -124,6 +124,8 @@ hint comes here
 ```{r}
 # pec
 library(dplyr)
+discrimination <- data.frame(promote = c(rep('promoted',35),rep('not_promoted',13)),
+  sex = c(rep('male',21), rep('female',14), rep('male',3), rep('female',10)))
 
 discrimination %>%
   mutate(promote_perm = sample(promote)) %>%
@@ -221,6 +223,8 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+discrimination <- data.frame(promote = c(rep('promoted',35),rep('not_promoted',13)),
+  sex = c(rep('male',21), rep('female',14), rep('male',3), rep('female',10)))
 
 set.seed(47)
 discrimination_permute <- mosaic::do(10000)*discrimination %>%
@@ -272,6 +276,9 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+discrimination <- data.frame(promote = c(rep('promoted',35),rep('not_promoted',13)),
+  sex = c(rep('male',21), rep('female',14), rep('male',3), rep('female',10)))
+
 set.seed(47)
 discrimination_permute <- mosaic::do(10000)*discrimination %>%
   mutate(promote_perm = sample(promote)) %>%
