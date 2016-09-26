@@ -93,7 +93,7 @@ opportunity <- data.frame(decision = c(rep('buyDVD',97),rep('nobuyDVD',53)),
 opportunity %>%
   group_by(group) %>%
   summarize(buy_prop = mean(decision == "buyDVD")) %>%
-  mutate(buy_perc = 100*buy_prop)
+  dplyr::mutate(buy_perc = 100*buy_prop)
 
 ```
 
@@ -103,7 +103,7 @@ opportunity %>%
 opportunity %>%
   group_by(group) %>%
   summarize(buy_prop = mean(decision == "buyDVD")) %>%
-  mutate(buy_perc = 100*buy_prop)
+  dplyr::mutate(buy_perc = 100*buy_prop)
 
 ```
 
@@ -170,6 +170,7 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+library(dplyr)
 
 opportunity <- data.frame(decision = c(rep('buyDVD',97),rep('nobuyDVD',53)),
   group = c(rep('control',56), rep('treatment',41), rep('control',19), rep('treatment',34)))
@@ -180,7 +181,7 @@ opportunity <- data.frame(decision = c(rep('buyDVD',97),rep('nobuyDVD',53)),
 # sample code
 set.seed(47)
 opportunity_permute <- mosaic::do(10000)*opportunity %>%
-  mutate(decision_perm = sample(decision)) %>%
+  dplyr::mutate(decision_perm = sample(decision)) %>%
   group_by(group) %>%
   summarize(buy_prop = mean(decision == "buyDVD"),
             buy_prop_perm = mean(decision_perm == "buyDVD")) %>%
@@ -198,7 +199,7 @@ ggplot(opportunity_permute, aes(x=buy_prop_perm)) + geom_histogram(binwidth = .0
 # solution code
 set.seed(47)
 opportunity_permute <- mosaic::do(10000)*opportunity %>%
-  mutate(decision_perm = sample(decision)) %>%
+  dplyr::mutate(decision_perm = sample(decision)) %>%
   group_by(group) %>%
   summarize(buy_prop = mean(decision == "buyDVD"),
             buy_prop_perm = mean(decision_perm == "buyDVD")) %>%
@@ -233,7 +234,7 @@ hint comes here
 # pec
 
 opportunity_permute <- mosaic::do(10000)*opportunity %>%
-  mutate(decision_perm = sample(decision)) %>%
+  dplyr::mutate(decision_perm = sample(decision)) %>%
   group_by(group) %>%
   summarize(buy_prop = mean(decision == "buyDVD"),
             buy_prop_perm = mean(decision_perm == "buyDVD")) %>%
@@ -361,7 +362,7 @@ hint comes here
 # pec
 
 opportunity_permute <- mosaic::do(10000)*opportunity %>%
-  mutate(decision_perm = sample(decision)) %>%
+  dplyr::mutate(decision_perm = sample(decision)) %>%
   group_by(group) %>%
   summarize(buy_prop = mean(decision == "buyDVD"),
             buy_prop_perm = mean(decision_perm == "buyDVD")) %>%
@@ -424,7 +425,7 @@ hint comes here
 # pec
 
 opportunity_permute <- mosaic::do(10000)*opportunity %>%
-  mutate(decision_perm = sample(decision)) %>%
+  dplyr::mutate(decision_perm = sample(decision)) %>%
   group_by(group) %>%
   summarize(buy_prop = mean(decision == "buyDVD"),
             buy_prop_perm = mean(decision_perm == "buyDVD")) %>%
