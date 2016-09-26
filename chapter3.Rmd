@@ -127,6 +127,11 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+library(ggplot2)
+
+opportunity <- data.frame(decision = c(rep('buyDVD',97),rep('nobuyDVD',53)),
+  group = c(rep('control',56), rep('treatment',41), rep('control',19), rep('treatment',34)))
+
 ```
 
 *** =sample_code
@@ -165,6 +170,9 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+
+opportunity <- data.frame(decision = c(rep('buyDVD',97),rep('nobuyDVD',53)),
+  group = c(rep('control',56), rep('treatment',41), rep('control',19), rep('treatment',34)))
 ```
 
 *** =sample_code
@@ -223,6 +231,15 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+
+opportunity_permute <- mosaic::do(10000)*opportunity %>%
+  mutate(decision_perm = sample(decision)) %>%
+  group_by(group) %>%
+  summarize(buy_prop = mean(decision == "buyDVD"),
+            buy_prop_perm = mean(decision_perm == "buyDVD")) %>%
+  select(-group) %>%
+  sapply(diff) # treatment - control
+ 
 ```
 
 *** =sample_code
@@ -342,6 +359,14 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+
+opportunity_permute <- mosaic::do(10000)*opportunity %>%
+  mutate(decision_perm = sample(decision)) %>%
+  group_by(group) %>%
+  summarize(buy_prop = mean(decision == "buyDVD"),
+            buy_prop_perm = mean(decision_perm == "buyDVD")) %>%
+  select(-group) %>%
+  sapply(diff) # treatment - control
 ```
 
 *** =sample_code
@@ -397,6 +422,15 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+
+opportunity_permute <- mosaic::do(10000)*opportunity %>%
+  mutate(decision_perm = sample(decision)) %>%
+  group_by(group) %>%
+  summarize(buy_prop = mean(decision == "buyDVD"),
+            buy_prop_perm = mean(decision_perm == "buyDVD")) %>%
+  select(-group) %>%
+  sapply(diff) # treatment - control
+
 ```
 
 *** =sample_code
