@@ -37,13 +37,17 @@ test_mc(2, feedback_msgs = c('wrong', 'right', 'wrong')) # if 2 is the correct o
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:ca3fcf9628
-## Re-sampling from a sample - tiny n
+## Re-sampling from a sample - same n
 
-Notice that the variability in p-hat is HUGE
+Notice that the variability in p-hat is approximately the same whether we sample from the population or re-sample from the sample
+
+What if we asked 30 people, and (1) the true proportion in the population was 0.4, and (2) 10 people said they supported the candidate?
 
 *** =instructions
 - instruction 1
 - instruction 2
+
+something here about how they should change the seed to see that it'll work regardless of the randomness.  However, set the seed so that they get the answer right.
 
 *** =hint
 hint comes here
@@ -51,16 +55,107 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+library(dplyr)
+library(ggplot2)
+library(oilabs)
 ```
 
 *** =sample_code
 ```{r}
 # sample code
+
+
+# first think about the sampling distribution of p-hat
+set.seed(47)
+polls <- data.frame(prop_yes = rbinom(1000, 30, .4) / 30)
+
+polls %>% 
+    summarize(ave_prop = mean(prop_yes),
+              sd_prop = sd(prop_yes),
+              q025_prop = quantile(prop_yes, p=.025),
+              q975_prop = quantile(prop_yes, p=.975))
+
+
+ggplot(polls, aes(prop_yes)) + geom_histogram(binwidth=0.01)
+
+
+#then think about the sampling distribution created by resampling from one sample
+
+
+# i'm stuggling with teaching ideas vs. teaching R.  
+# i've written it simply in R.  however, i'm sure rbinom(30,1,.4) vs. rbinom(100,30,.4)
+# will be very confusing to students
+
+# additionally... rep_sample_n didn't work when onepoll was a data frame (it had to be a tbl)
+
+set.seed(47)
+onepoll <- as.tbl(data.frame(votes = rbinom(30, 1, .4)))
+
+onepoll %>%
+  summarize(mean(votes))
+
+onepoll_boot <- onepoll %>%
+  oilabs::rep_sample_n(30, replace=TRUE, reps=10000) %>%
+  summarize(prop_yes_boot = mean(votes)) 
+
+onepoll_boot %>% 
+    summarize(ave_prop = mean(prop_yes_boot),
+              sd_prop = sd(prop_yes_boot),
+              q025_prop = quantile(prop_yes_boot, p=.025),
+              q975_prop = quantile(prop_yes_boot, p=.975))
+
+
+ggplot(onepoll_boot, aes(prop_yes_boot)) + geom_histogram(binwidth=0.01)
+
+
 ```
 
 *** =solution
 ```{r}
 # solution code
+
+
+# first think about the sampling distribution of p-hat
+set.seed(47)
+polls <- data.frame(prop_yes = rbinom(1000, 30, .4) / 30)
+
+polls %>% 
+    summarize(ave_prop = mean(prop_yes),
+              sd_prop = sd(prop_yes),
+              q025_prop = quantile(prop_yes, p=.025),
+              q975_prop = quantile(prop_yes, p=.975))
+
+
+ggplot(polls, aes(prop_yes)) + geom_histogram(binwidth=0.01)
+
+
+#then think about the sampling distribution created by resampling from one sample
+
+
+# i'm stuggling with teaching ideas vs. teaching R.  
+# i've written it simply in R.  however, i'm sure rbinom(30,1,.4) vs. rbinom(100,30,.4)
+# will be very confusing to students
+
+# additionally... rep_sample_n didn't work when onepoll was a data frame (it had to be a tbl)
+
+set.seed(47)
+onepoll <- as.tbl(data.frame(votes = rbinom(30, 1, .4)))
+
+onepoll %>%
+  summarize(mean(votes))
+
+onepoll_boot <- onepoll %>%
+  oilabs::rep_sample_n(30, replace=TRUE, reps=10000) %>%
+  summarize(prop_yes_boot = mean(votes)) 
+
+onepoll_boot %>% 
+    summarize(ave_prop = mean(prop_yes_boot),
+              sd_prop = sd(prop_yes_boot),
+              q025_prop = quantile(prop_yes_boot, p=.025),
+              q975_prop = quantile(prop_yes_boot, p=.975))
+
+
+ggplot(onepoll_boot, aes(prop_yes_boot)) + geom_histogram(binwidth=0.01)
 ```
 
 *** =sct
@@ -83,16 +178,65 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+library(tidyr)
+
+set.seed(47)
+polls <- data.frame(prop_yes = rbinom(1000, 30, .4) / 30)
+
+set.seed(47)
+onepoll <- as.tbl(data.frame(votes = rbinom(30, 1, .4)))
+
 ```
 
 *** =sample_code
 ```{r}
 # sample code
+polls %>% 
+    summarize(ave_prop = mean(prop_yes),
+              sd_prop = sd(prop_yes),
+              q025_prop = quantile(prop_yes, p=.025),
+              q975_prop = quantile(prop_yes, p=.975))
+onepoll %>%
+  summarize(mean(votes))
+
+onepoll_boot <- onepoll %>%
+  oilabs::rep_sample_n(300, replace=TRUE, reps=10000) %>%
+  summarize(prop_yes_boot = mean(votes)) 
+
+onepoll_boot %>% 
+    summarize(ave_prop = mean(prop_yes_boot),
+              sd_prop = sd(prop_yes_boot),
+              q025_prop = quantile(prop_yes_boot, p=.025),
+              q975_prop = quantile(prop_yes_boot, p=.975))
+
+
+ggplot(onepoll_boot, aes(prop_yes_boot)) + geom_histogram(binwidth=0.01)
+
 ```
 
 *** =solution
 ```{r}
 # solution code
+polls %>% 
+    summarize(ave_prop = mean(prop_yes),
+              sd_prop = sd(prop_yes),
+              q025_prop = quantile(prop_yes, p=.025),
+              q975_prop = quantile(prop_yes, p=.975))
+onepoll %>%
+  summarize(mean(votes))
+
+onepoll_boot <- onepoll %>%
+  oilabs::rep_sample_n(300, replace=TRUE, reps=10000) %>%
+  summarize(prop_yes_boot = mean(votes)) 
+
+onepoll_boot %>% 
+    summarize(ave_prop = mean(prop_yes_boot),
+              sd_prop = sd(prop_yes_boot),
+              q025_prop = quantile(prop_yes_boot, p=.025),
+              q975_prop = quantile(prop_yes_boot, p=.975))
+
+
+ggplot(onepoll_boot, aes(prop_yes_boot)) + geom_histogram(binwidth=0.01)
 ```
 
 *** =sct
@@ -101,7 +245,7 @@ success_msg("Great work!")
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:a74847b5eb
-## Re-sampling from a sample - same n
+## Re-sampling from a sample - small n
 
 Notice that we get variability in p-hat that seems reasonable
 
@@ -115,16 +259,64 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+library(tidyr)
+
+set.seed(47)
+polls <- data.frame(prop_yes = rbinom(1000, 30, .4) / 30)
+
+set.seed(47)
+onepoll <- as.tbl(data.frame(votes = rbinom(30, 1, .4)))
 ```
 
 *** =sample_code
 ```{r}
 # sample code
+
+polls %>% 
+    summarize(ave_prop = mean(prop_yes),
+              sd_prop = sd(prop_yes),
+              q025_prop = quantile(prop_yes, p=.025),
+              q975_prop = quantile(prop_yes, p=.975))
+onepoll %>%
+  summarize(mean(votes))
+
+onepoll_boot <- onepoll %>%
+  oilabs::rep_sample_n(3, replace=TRUE, reps=10000) %>%
+  summarize(prop_yes_boot = mean(votes)) 
+
+onepoll_boot %>% 
+    summarize(ave_prop = mean(prop_yes_boot),
+              sd_prop = sd(prop_yes_boot),
+              q025_prop = quantile(prop_yes_boot, p=.025),
+              q975_prop = quantile(prop_yes_boot, p=.975))
+
+
+ggplot(onepoll_boot, aes(prop_yes_boot)) + geom_histogram(binwidth=0.01)
 ```
 
 *** =solution
 ```{r}
 # solution code
+polls %>% 
+    summarize(ave_prop = mean(prop_yes),
+              sd_prop = sd(prop_yes),
+              q025_prop = quantile(prop_yes, p=.025),
+              q975_prop = quantile(prop_yes, p=.975))
+onepoll %>%
+  summarize(mean(votes))
+
+onepoll_boot <- onepoll %>%
+  oilabs::rep_sample_n(3, replace=TRUE, reps=10000) %>%
+  summarize(prop_yes_boot = mean(votes)) 
+
+onepoll_boot %>% 
+    summarize(ave_prop = mean(prop_yes_boot),
+              sd_prop = sd(prop_yes_boot),
+              q025_prop = quantile(prop_yes_boot, p=.025),
+              q975_prop = quantile(prop_yes_boot, p=.975))
+
+
+ggplot(onepoll_boot, aes(prop_yes_boot)) + geom_histogram(binwidth=0.01)
 ```
 
 *** =sct
