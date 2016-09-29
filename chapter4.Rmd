@@ -94,6 +94,7 @@ onepoll <- as.tbl(data.frame(votes = rbinom(30, 1, .4)))
 onepoll %>%
   summarize(mean(votes))
 
+set.seed(47)
 onepoll_boot <- onepoll %>%
   oilabs::rep_sample_n(30, replace=TRUE, reps=10000) %>%
   summarize(prop_yes_boot = mean(votes)) 
@@ -144,6 +145,7 @@ onepoll <- as.tbl(data.frame(votes = rbinom(30, 1, .4)))
 onepoll %>%
   summarize(mean(votes))
 
+set.seed(47)
 onepoll_boot <- onepoll %>%
   oilabs::rep_sample_n(30, replace=TRUE, reps=10000) %>%
   summarize(prop_yes_boot = mean(votes)) 
@@ -203,6 +205,7 @@ onepoll_boot <- onepoll %>%
   oilabs::rep_sample_n(300, replace=TRUE, reps=10000) %>%
   summarize(prop_yes_boot = mean(votes)) 
 
+set.seed(47)
 onepoll_boot %>% 
     summarize(ave_prop = mean(prop_yes_boot),
               sd_prop = sd(prop_yes_boot),
@@ -225,6 +228,7 @@ polls %>%
 onepoll %>%
   summarize(mean(votes))
 
+set.seed(47)
 onepoll_boot <- onepoll %>%
   oilabs::rep_sample_n(300, replace=TRUE, reps=10000) %>%
   summarize(prop_yes_boot = mean(votes)) 
@@ -280,6 +284,7 @@ polls %>%
 onepoll %>%
   summarize(mean(votes))
 
+set.seed(47)
 onepoll_boot <- onepoll %>%
   oilabs::rep_sample_n(3, replace=TRUE, reps=10000) %>%
   summarize(prop_yes_boot = mean(votes)) 
@@ -305,6 +310,7 @@ polls %>%
 onepoll %>%
   summarize(mean(votes))
 
+set.seed(47)
 onepoll_boot <- onepoll %>%
   oilabs::rep_sample_n(3, replace=TRUE, reps=10000) %>%
   summarize(prop_yes_boot = mean(votes)) 
@@ -338,7 +344,7 @@ Discuss their normal exercises.  Maybe also talk about SE(phat) = sqrt(p(1-p)/n)
 --- type:NormalExercise lang:r xp:100 skills:1 key:13c2b4af1c
 ## Empirical Rule (1)
 
-Have them find the SE of the resampled phats
+Notice that approximately the 95% of the p-hat values are within 2 SE
 
 *** =instructions
 - instruction 1
@@ -350,16 +356,27 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+library(tidyr)
+
+set.seed(47)
+polls <- data.frame(prop_yes = rbinom(1000, 30, .4) / 30)
+
 ```
 
 *** =sample_code
 ```{r}
 # sample code
+polls %>%
+  summarize(sum( polls < 0.4 - 2*sd(prop_yes)),
+            sum( polls > 0.4 + 2*sd(prop_yes)))
 ```
 
 *** =solution
 ```{r}
 # solution code
+polls %>%
+  summarize(sum( polls < 0.4 - 2*sd(prop_yes)),
+            sum( polls > 0.4 + 2*sd(prop_yes)))
 ```
 
 *** =sct
@@ -370,7 +387,7 @@ success_msg("Great work!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:071683bccd
 ## Empirical Rule (2)
 
-Have them find the values for 95% of phats  (or resampled phats?)
+So, 95% of p-hat values are within 2SE of the true value!
 
 *** =instructions
 - instruction 1
@@ -382,11 +399,20 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+library(tidyr)
+
+set.seed(47)
+polls <- data.frame(prop_yes = rbinom(1000, 30, .4) / 30)
+
 ```
 
 *** =sample_code
 ```{r}
 # sample code
+polls %>%
+  summarize(sum( 0.4 < polls - 2*sd(prop_yes)),
+            sum( 0.4 > polls + 2*sd(prop_yes)))
+
 ```
 
 *** =solution
@@ -402,11 +428,13 @@ success_msg("Great work!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:ffec7ad763
 ## t-Confidence Interval
 
-Have them actually make the CI
+Have them actually make the t-CI
 
 *** =instructions
 - instruction 1
 - instruction 2
+
+we only got one p-hat.  and we used the bootstrapping technique to find the SE.  so if we go from our p-hat plus or minus 2SE, we hope we are one of the approximately 95% of intervals that capture the true value.
 
 *** =hint
 hint comes here
@@ -414,16 +442,39 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+library(tidyr)
+
+set.seed(47)
+onepoll <- as.tbl(data.frame(votes = rbinom(30, 1, .4)))
+
+set.seed(47)
+onepoll_boot <- onepoll %>%
+  oilabs::rep_sample_n(30, replace=TRUE, reps=10000) %>%
+  summarize(prop_yes_boot = mean(votes)) 
+
 ```
 
 *** =sample_code
 ```{r}
 # sample code
+
+# I need help here.  How do I take the average from the original data (onepoll) and plus or minus the SE from the bootstrap data?  That is, how would it be best to use dplyr to work with both dataframes at the same time?  And what about $?  Do they know about $?
+
+lower <- mean(onepoll$votes) - 2*sd(onepoll_boot$prop_yes_boot)
+upper <- mean(onepoll$votes) + 2*sd(onepoll_boot$prop_yes_boot)
+
+lower
+upper
 ```
 
 *** =solution
 ```{r}
 # solution code
+lower <- mean(onepoll$votes) - 2*sd(onepoll_boot$prop_yes_boot)
+upper <- mean(onepoll$votes) + 2*sd(onepoll_boot$prop_yes_boot)
+
+lower
+upper
 ```
 
 *** =sct
@@ -457,16 +508,87 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+library(dplyr)
+set.seed(47)
+onepoll <- as.tbl(data.frame(votes = rbinom(30, 1, .4)))
+
+set.seed(47)
+onepoll_boot <- onepoll %>%
+  oilabs::rep_sample_n(30, replace=TRUE, reps=10000) %>%
+  summarize(prop_yes_boot = mean(votes)) 
+
+lower <- mean(onepoll$votes) - 2*sd(onepoll_boot$prop_yes_boot)
+upper <- mean(onepoll$votes) + 2*sd(onepoll_boot$prop_yes_boot)
+
+lower
+upper
+
 ```
 
 *** =sample_code
 ```{r}
 # sample code
+set.seed(47)
+onepoll <- as.tbl(data.frame(votes = rbinom(300, 1, .4)))
+
+set.seed(47)
+onepoll_boot <- onepoll %>%
+  oilabs::rep_sample_n(300, replace=TRUE, reps=10000) %>%
+  summarize(prop_yes_boot = mean(votes)) 
+
+lower <- mean(onepoll$votes) - 2*sd(onepoll_boot$prop_yes_boot)
+upper <- mean(onepoll$votes) + 2*sd(onepoll_boot$prop_yes_boot)
+
+lower
+upper
+
+set.seed(47)
+onepoll <- as.tbl(data.frame(votes = rbinom(3, 1, .4)))
+
+set.seed(47)
+onepoll_boot <- onepoll %>%
+  oilabs::rep_sample_n(3, replace=TRUE, reps=10000) %>%
+  summarize(prop_yes_boot = mean(votes)) 
+
+lower <- mean(onepoll$votes) - 2*sd(onepoll_boot$prop_yes_boot)
+upper <- mean(onepoll$votes) + 2*sd(onepoll_boot$prop_yes_boot)
+
+lower
+upper
+
 ```
 
 *** =solution
 ```{r}
 # solution code
+set.seed(47)
+onepoll <- as.tbl(data.frame(votes = rbinom(300, 1, .4)))
+
+set.seed(47)
+onepoll_boot <- onepoll %>%
+  oilabs::rep_sample_n(300, replace=TRUE, reps=10000) %>%
+  summarize(prop_yes_boot = mean(votes)) 
+
+lower <- mean(onepoll$votes) - 2*sd(onepoll_boot$prop_yes_boot)
+upper <- mean(onepoll$votes) + 2*sd(onepoll_boot$prop_yes_boot)
+
+lower
+upper
+
+set.seed(47)
+onepoll <- as.tbl(data.frame(votes = rbinom(3, 1, .4)))
+
+set.seed(47)
+onepoll_boot <- onepoll %>%
+  oilabs::rep_sample_n(3, replace=TRUE, reps=10000) %>%
+  summarize(prop_yes_boot = mean(votes)) 
+
+lower <- mean(onepoll$votes) - 2*sd(onepoll_boot$prop_yes_boot)
+upper <- mean(onepoll$votes) + 2*sd(onepoll_boot$prop_yes_boot)
+
+lower
+upper
+
 ```
 
 *** =sct
@@ -489,16 +611,57 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+library(dplyr)
+set.seed(47)
+onepoll <- as.tbl(data.frame(votes = rbinom(30, 1, .4)))
+
+set.seed(47)
+onepoll_boot <- onepoll %>%
+  oilabs::rep_sample_n(30, replace=TRUE, reps=10000) %>%
+  summarize(prop_yes_boot = mean(votes)) 
+
+lower <- mean(onepoll$votes) - 2*sd(onepoll_boot$prop_yes_boot)
+upper <- mean(onepoll$votes) + 2*sd(onepoll_boot$prop_yes_boot)
+
+lower
+upper
 ```
 
 *** =sample_code
 ```{r}
 # sample code
+set.seed(47)
+onepoll <- as.tbl(data.frame(votes = rbinom(30, 1, .8)))
+
+set.seed(47)
+onepoll_boot <- onepoll %>%
+  oilabs::rep_sample_n(30, replace=TRUE, reps=10000) %>%
+  summarize(prop_yes_boot = mean(votes)) 
+
+lower <- mean(onepoll$votes) - 2*sd(onepoll_boot$prop_yes_boot)
+upper <- mean(onepoll$votes) + 2*sd(onepoll_boot$prop_yes_boot)
+
+lower
+upper
+
 ```
 
 *** =solution
 ```{r}
 # solution code
+set.seed(47)
+onepoll <- as.tbl(data.frame(votes = rbinom(30, 1, .8)))
+
+set.seed(47)
+onepoll_boot <- onepoll %>%
+  oilabs::rep_sample_n(30, replace=TRUE, reps=10000) %>%
+  summarize(prop_yes_boot = mean(votes)) 
+
+lower <- mean(onepoll$votes) - 2*sd(onepoll_boot$prop_yes_boot)
+upper <- mean(onepoll$votes) + 2*sd(onepoll_boot$prop_yes_boot)
+
+lower
+upper
 ```
 
 *** =sct
@@ -507,7 +670,7 @@ success_msg("Great work!")
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:d57fc5f3bb
-## Confidence level effects CI
+## Percentile Interval - changing the percents
 
 Repeate process of finding CI for different values of the confidence level
 
@@ -521,16 +684,48 @@ hint comes here
 *** =pre_exercise_code
 ```{r}
 # pec
+
+set.seed(47)
+onepoll <- as.tbl(data.frame(votes = rbinom(30, 1, .4)))
+
+set.seed(47)
+onepoll_boot <- onepoll %>%
+  oilabs::rep_sample_n(30, replace=TRUE, reps=10000) %>%
+  summarize(prop_yes_boot = mean(votes)) 
 ```
 
 *** =sample_code
 ```{r}
 # sample code
+onepoll_boot %>% 
+  summarize(q025_prop = quantile(prop_yes_boot, p=.025),
+            q975_prop = quantile(prop_yes_boot, p=.975))
+
+onepoll_boot %>% 
+  summarize(q005_prop = quantile(prop_yes_boot, p=.005),
+            q995_prop = quantile(prop_yes_boot, p=.995))
+
+onepoll_boot %>% 
+  summarize(q05_prop = quantile(prop_yes_boot, p=.05),
+            q95_prop = quantile(prop_yes_boot, p=.95))
+
 ```
 
 *** =solution
 ```{r}
 # solution code
+onepoll_boot %>% 
+  summarize(q025_prop = quantile(prop_yes_boot, p=.025),
+            q975_prop = quantile(prop_yes_boot, p=.975))
+
+onepoll_boot %>% 
+  summarize(q005_prop = quantile(prop_yes_boot, p=.005),
+            q995_prop = quantile(prop_yes_boot, p=.995))
+
+onepoll_boot %>% 
+  summarize(q05_prop = quantile(prop_yes_boot, p=.05),
+            q95_prop = quantile(prop_yes_boot, p=.95))
+
 ```
 
 *** =sct
