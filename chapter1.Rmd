@@ -72,7 +72,7 @@ I'd really like a demo here (not in R).  Ones that I've seen before are at: http
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:0d505087e1
 ## Randomly allocating samples
-
+a
 Use pre-code with either do() or sample() to have them create a handful of new samples taken from a null distribution
 
 *** =instructions
